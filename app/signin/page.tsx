@@ -1,24 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import {
   Button,
-  Flex,
-  Heading,
   Link,
-  Box,
   Text,
   FormControl,
   FormLabel,
   Input,
   Stack,
-  FormErrorMessage,
+  InputGroup,
 } from "@chakra-ui/react";
-import Image from "next/image";
-import Github from "../../public/github.svg";
-import Dots from "@/src/components/Dots";
 import { useForm } from "react-hook-form";
+import Main from "@/src/components/general/Main";
+import Form from "@/src/components/auth/Form";
+import PasswordToggle, {
+  PasswordTypes,
+} from "@/src/components/auth/PasswordToggle";
 
 export default function SignInPage({ providers }) {
   const {
@@ -26,6 +25,8 @@ export default function SignInPage({ providers }) {
     handleSubmit,
     formState: { errors },
   } = useForm<{ email: string; password: string }>();
+
+  const [passwordType, setPasswordType] = useState<PasswordTypes>("password");
 
   const onSubmit = async (data) => {
     const result = await signIn("credentials", {
@@ -44,28 +45,20 @@ export default function SignInPage({ providers }) {
   // };
 
   return (
-    <Stack as="main" h="100vh" justify="center" align="center">
-      <Box
-        border="4px"
-        borderColor="black"
-        w="full"
-        maxW="450px"
-        borderRadius="5px"
+    <Main flexDir="column" justify="center" align="center" uPetsBackground>
+      <Form
+        title="Acesse o UPets"
+        link={
+          <Link href="/signup" fontSize="2xl">
+            Não possui conta?{" "}
+            <Text as="span" textDecor="underline">
+              Cadastre-se
+            </Text>
+          </Link>
+        }
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <Stack
-          as="form"
-          px="40px"
-          py="70px"
-          position="relative"
-          align="center"
-          gap="40px"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <Dots />
-          <Heading as="h1" size="3xl" textAlign="center">
-            Acesse o UPets
-          </Heading>
-
+        <>
           <Stack w="full">
             <FormControl>
               <FormLabel size="lg">E-mail</FormLabel>
@@ -76,14 +69,19 @@ export default function SignInPage({ providers }) {
                 {...register("email")}
               />
             </FormControl>
+
             <FormControl>
               <FormLabel size="lg">Senha</FormLabel>
-              <Input
-                placeholder="gatinho@upets.com"
-                size="lg"
-                type="password"
-                {...register("password")}
-              />
+              <InputGroup>
+                <Input
+                  placeholder="euamocachorro"
+                  size="lg"
+                  type={passwordType}
+                  pr="50px"
+                  {...register("password")}
+                />
+                <PasswordToggle type={passwordType} setType={setPasswordType} />
+              </InputGroup>
             </FormControl>
           </Stack>
 
@@ -93,17 +91,8 @@ export default function SignInPage({ providers }) {
             </Button>
             <Link href="/forgot">Esqueci minha senha</Link>
           </Stack>
-        </Stack>
-
-        <Flex h="60px" justify="center" align="center" bg="black" color="white">
-          <Link href="/signup" fontSize="2xl">
-            Não possui conta?{" "}
-            <Text as="span" textDecor="underline">
-              Cadastre-se
-            </Text>
-          </Link>
-        </Flex>
-      </Box>
-    </Stack>
+        </>
+      </Form>
+    </Main>
   );
 }

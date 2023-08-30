@@ -17,7 +17,8 @@ export const theme = extendTheme({
     black: "#000000",
     gray: {
       1: "#F2F2F2",
-      2: "#BBBBBB",
+      2: "#DDDDDD",
+      3: "#BBBBBB",
     },
     white: "#FFFFFF",
     orange: "#FFA23B",
@@ -62,6 +63,7 @@ export const theme = extendTheme({
         },
       },
     },
+
     Input: {
       sizes: {
         lg: {
@@ -78,6 +80,16 @@ export const theme = extendTheme({
         filled: {
           field: {
             bg: "gray.1",
+            _placeholder: {
+              color: "gray.3",
+            },
+            _focus: {
+              bg: "gray.1",
+              borderColor: "gray.2",
+            },
+            _hover: {
+              bg: "gray.1",
+            },
           },
         },
       },
