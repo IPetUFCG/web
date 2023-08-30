@@ -4,6 +4,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { CacheProvider } from "@chakra-ui/next-js";
 import { ReactNode } from "react";
 
+import { theme } from "./theme";
+
 type ProviderType = {
   children: ReactNode;
 };
@@ -11,7 +13,7 @@ type ProviderType = {
 const Providers = ({ children }: ProviderType) => {
   return (
     <CacheProvider>
-      <ChakraProvider resetCSS>{children}</ChakraProvider>
+      <ChakraProvider theme={theme}>{children}</ChakraProvider>
     </CacheProvider>
   );
 };

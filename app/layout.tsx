@@ -1,10 +1,9 @@
-import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Red_Hat_Display } from "next/font/google";
 import Providers from "./providers";
 import AuthProvider from "@/src/context/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Red_Hat_Display({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: "My POC",
@@ -17,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="pt-br">
+      <body className={font.className}>
         <AuthProvider>
           <Providers>{children}</Providers>
         </AuthProvider>
