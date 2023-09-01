@@ -83,7 +83,7 @@ export default function SignInPage({ providers }) {
                 )}
               </FormControl>
 
-              <FormControl isInvalid={!!errors.password}>
+              <FormControl isInvalid={!!errors.passwordConfirmation}>
                 <FormLabel size="lg">Confirmação da Senha</FormLabel>
                 <Input
                   placeholder="euamocachorro"
@@ -91,7 +91,8 @@ export default function SignInPage({ providers }) {
                   type="password"
                   {...register("passwordConfirmation", {
                     required: "Você precisa confirmar a senha",
-                    validate: (value) => value === password,
+                    validate: (value) =>
+                      value === password || "Senhas diferentes",
                   })}
                 />
                 {errors.passwordConfirmation && (
