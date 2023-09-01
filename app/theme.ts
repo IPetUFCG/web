@@ -30,6 +30,13 @@ export const theme = extendTheme({
     green: "#4DE8AF",
     green_yellow: "#99FE96",
     yellow: "#ECFF55",
+    github: {
+      black: "#24292f",
+      white: "#e6edf3",
+    },
+    google: {
+      white: "#e8eaed",
+    },
   },
 
   fonts: {
@@ -44,6 +51,18 @@ export const theme = extendTheme({
           h: "55px",
           w: "100%",
           fontSize: "3xl",
+          transition: "all 0.2s",
+          _active: {
+            filter: "brightness(110%)",
+          },
+        },
+      },
+      variants: {
+        orange: {
+          bg: "orange",
+        },
+        blue: {
+          bg: "blue",
         },
       },
     },
@@ -52,6 +71,7 @@ export const theme = extendTheme({
         lg: {
           fontWeight: "bold",
           fontSize: "xl",
+          mb: "2px",
         },
       },
     },
@@ -95,6 +115,23 @@ export const theme = extendTheme({
       },
       defaultProps: {
         variant: "filled",
+      },
+    },
+
+    Text: {
+      baseStyle: {
+        lineHeight: "100%",
+      },
+    },
+
+    Heading: {
+      baseStyle: {
+        lineHeight: "100%",
+      },
+      sizes: {
+        "3xl": {
+          fontSize: "3rem",
+        },
       },
     },
   },

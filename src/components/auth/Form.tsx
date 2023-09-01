@@ -1,23 +1,16 @@
-import {
-  Box,
-  BoxProps,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-  Link,
-} from "@chakra-ui/react";
+import { Box, BoxProps, Heading, Stack, Text } from "@chakra-ui/react";
 import Dots from "../general/Dots";
+import NavigationLink from "./NavigationLink";
 
 export default function Form({
   children,
   onSubmit,
   title,
-  link,
+  subtitle,
   ...boxProps
 }: BoxProps & {
   title: string;
-  link: JSX.Element;
+  subtitle?: string;
   children: JSX.Element;
   onSubmit: () => void;
 }) {
@@ -26,32 +19,39 @@ export default function Form({
       border="4px"
       borderColor="black"
       w="full"
-      maxW="450px"
-      borderRadius="5px"
+      maxW="430px"
+      borderRadius="10px"
       bg="white"
       {...boxProps}
     >
       <Stack
         as="form"
-        px="40px"
-        py="70px"
+        px="30px"
+        pt="60px"
+        pb="40px"
         position="relative"
         align="center"
-        gap="40px"
+        gap="30px"
         onSubmit={onSubmit}
       >
         <Dots />
 
-        <Heading as="h1" size="3xl" textAlign="center">
-          {title}
-        </Heading>
+        <Stack gap="15px" mb="10px">
+          <Heading as="h1" size="3xl" textAlign="center">
+            {title}
+          </Heading>
+
+          {subtitle && (
+            <Text as="h3" fontSize="3xl" textAlign="center">
+              {subtitle}
+            </Text>
+          )}
+        </Stack>
 
         {children}
       </Stack>
 
-      <Flex h="60px" justify="center" align="center" bg="black" color="white">
-        {link}
-      </Flex>
+      <NavigationLink />
     </Box>
   );
 }

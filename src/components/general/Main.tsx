@@ -1,15 +1,15 @@
-import { Flex, FlexProps } from "@chakra-ui/react";
+import { Container, ContainerProps } from "@chakra-ui/react";
 import Background from "../auth/Background";
 
 export default function Main({
   children,
   uPetsBackground,
-  ...flexProps
-}: FlexProps & { children: JSX.Element; uPetsBackground?: boolean }) {
+  ...containerProps
+}: ContainerProps & { children: JSX.Element; uPetsBackground?: boolean }) {
   return (
-    <Flex as="main" h="100vh" {...flexProps}>
+    <Container as="main" h="100vh" w="100vw" {...containerProps}>
       {children}
       {uPetsBackground && <Background />}
-    </Flex>
+    </Container>
   );
 }
