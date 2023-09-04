@@ -36,8 +36,6 @@ export default function SignInPage({ providers }) {
     });
   };
 
-  console.log({ providers });
-
   return (
     <div className="h-full flex justify-center items-center">
       <form method="post" onSubmit={onSubmit}>
