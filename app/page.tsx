@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomCard } from "@/src/components/Card";
+import { CustomCard } from "../src/components/Card";
 
 export default function Home() {
   return (
