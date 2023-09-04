@@ -9,7 +9,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Stack,
   InputGroup,
   Flex,
   FormErrorMessage,
@@ -18,10 +17,9 @@ import {
 import Main from "@/src/components/general/Main";
 import Form from "@/src/components/auth/Form";
 import PasswordToggle from "@/src/components/auth/PasswordToggle";
-import AuthProvidersButtons from "@/src/components/auth/AuthProvidersButtons";
 import { usePasswordToggle } from "@/src/hooks/usePasswordToggle";
 
-export default function SignInPage({ providers }) {
+export default function ChangePage() {
   const {
     register,
     handleSubmit,

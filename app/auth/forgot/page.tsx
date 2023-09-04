@@ -9,14 +9,13 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Stack,
   Flex,
   FormErrorMessage,
 } from "@chakra-ui/react";
 import Main from "@/src/components/general/Main";
 import Form from "@/src/components/auth/Form";
 
-export default function SignInPage({ providers }) {
+export default function ForgotPage() {
   const {
     register,
     handleSubmit,

@@ -6,7 +6,6 @@ import { signIn } from "next-auth/react";
 
 import {
   Button,
-  Text,
   FormControl,
   FormLabel,
   Input,
@@ -23,7 +22,7 @@ import AuthProvidersButtons from "@/src/components/auth/AuthProvidersButtons";
 import { usePasswordToggle } from "@/src/hooks/usePasswordToggle";
 import PasswordToggle from "@/src/components/auth/PasswordToggle";
 
-export default function SignInPage({ providers }) {
+export default function SignInPage() {
   const {
     register,
     handleSubmit,

@@ -21,7 +21,7 @@ import PasswordToggle from "@/src/components/auth/PasswordToggle";
 import AuthProvidersButtons from "@/src/components/auth/AuthProvidersButtons";
 import { usePasswordToggle } from "@/src/hooks/usePasswordToggle";
 
-export default function SignInPage({ providers }) {
+export default function SignUpPage() {
   const {
     register,
     handleSubmit,
