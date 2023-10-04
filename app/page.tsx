@@ -1,13 +1,15 @@
 "use client";
 
-import { CustomCard } from "../src/components/Card";
+import Brand from "@/src/components/sections/Brand";
+import Introduction from "@/src/components/sections/Introduction";
+import AboutUs from "@/src/components/sections/AboutUs";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <CustomCard />
-      </div>
+    <main>
+      <Brand />
+      <Introduction />
+      <AboutUs />
     </main>
   );
 }

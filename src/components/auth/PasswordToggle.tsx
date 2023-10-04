@@ -21,7 +21,7 @@ export default function PasswordToggle({
       m="5px"
       transition="all 0.2s"
       borderRadius="3px"
-      _hover={{ bg: "gray.2" }}
+      _hover={{ bg: "gray.3" }}
       onClick={toggleType}
       cursor="pointer"
     >
