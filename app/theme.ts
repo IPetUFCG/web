@@ -24,6 +24,13 @@ export const theme = extendTheme({
           borderColor: "white",
         },
       },
+      ".no-scrollbar": {
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+      },
+      ".no-scrollbar::-webkit-scrollbar": {
+        display: "none",
+      },
     },
   },
 
@@ -134,15 +141,38 @@ export const theme = extendTheme({
       },
     },
 
+    Flex: {
+      variants: {
+        "no-scrollbar": {
+          field: {
+            bg: "gray.1",
+            _placeholder: {
+              color: "gray.3",
+            },
+            _focus: {
+              bg: "gray.1",
+              borderColor: "gray.2",
+            },
+            _hover: {
+              bg: "gray.1",
+            },
+          },
+        },
+      },
+    },
+
     Text: {
       baseStyle: {
         lineHeight: "100%",
+        color: "black",
+        fontSize: "22px",
       },
     },
 
     Heading: {
       baseStyle: {
         lineHeight: "100%",
+        color: "black",
       },
       sizes: {
         "3xl": {

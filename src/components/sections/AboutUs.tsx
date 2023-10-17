@@ -8,7 +8,7 @@ export default function AboutUs() {
           <Heading as="h2" fontSize="30px">
             Quem somos? Qual o nosso objetivo?
           </Heading>
-          <Text fontSize="22px" lineHeight="base">
+          <Text lineHeight="base">
             O Lorem Ipsum é um texto modelo da indústria tipográfica e de
             impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por
             estas indústrias desde o ano de 1500, quando uma misturou os

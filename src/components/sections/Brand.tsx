@@ -21,7 +21,7 @@ export default function Brand() {
             alignItems="center"
             rounded="5px"
           >
-            <Text fontWeight="bold" fontSize="16px">
+            <Text fontWeight="bold" fontSize="16px" color="white">
               Acesse o UPets!
             </Text>
           </Link>
