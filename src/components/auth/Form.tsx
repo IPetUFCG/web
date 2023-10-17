@@ -16,27 +16,27 @@ export default function Form({
 }) {
   return (
     <Box
-      border="4px"
+      border="0.25rem"
       borderColor="black"
       w="full"
-      maxW="430px"
-      borderRadius="10px"
+      maxW="26.875rem"
+      borderRadius="0.625rem"
       bg="white"
       {...boxProps}
     >
       <Stack
         as="form"
-        px="30px"
-        pt="60px"
-        pb="40px"
+        px="1.875rem"
+        pt="3.75rem"
+        pb="2.5rem"
         position="relative"
         align="center"
-        gap="30px"
+        gap="1.875rem"
         onSubmit={onSubmit}
       >
         <Dots />
 
-        <Stack gap="15px" mb="10px">
+        <Stack gap="0.9375rem" mb="0.625rem">
           <Heading as="h1" size="3xl" textAlign="center">
             {title}
           </Heading>

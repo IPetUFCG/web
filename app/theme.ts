@@ -4,11 +4,36 @@ export const theme = extendTheme({
   styles: {
     global: {
       html: {
-        fontSize: "62.5%",
+        fontSize: {
+          base: "55%",
+          md: "62.5%",
+          lg: "75%",
+        },
       },
       body: {
         fontSize: "1.6rem",
         overflowX: "hidden",
+        "&::-webkit-scrollbar": {
+          width: "10px",
+        },
+
+        "&::-webkit-scrollbar-track": {
+          bg: "white",
+        },
+
+        "&::-webkit-scrollbar-thumb": {
+          bg: "black",
+          borderRadius: "10px",
+          border: "4px solid",
+          borderColor: "white",
+        },
+      },
+      ".no-scrollbar": {
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+      },
+      ".no-scrollbar::-webkit-scrollbar": {
+        display: "none",
       },
     },
   },
@@ -17,9 +42,11 @@ export const theme = extendTheme({
     black: "#000000",
     gray: {
       1: "#F2F2F2",
-      2: "#DDDDDD",
-      3: "#BBBBBB",
+      2: "#EEEEEE",
+      3: "#DDDDDD",
+      4: "#BBBBBB",
     },
+    darkgray: "#111111",
     white: "#FFFFFF",
     orange: "#FFA23B",
     orange_pink: "#F68253",
@@ -48,7 +75,7 @@ export const theme = extendTheme({
     Button: {
       sizes: {
         lg: {
-          h: "55px",
+          h: "3.4375rem",
           w: "100%",
           fontSize: "3xl",
           transition: "all 0.2s",
@@ -71,7 +98,7 @@ export const theme = extendTheme({
         lg: {
           fontWeight: "bold",
           fontSize: "xl",
-          mb: "2px",
+          mb: "0.125rem",
         },
       },
     },
@@ -88,7 +115,7 @@ export const theme = extendTheme({
       sizes: {
         lg: {
           field: {
-            h: "45px",
+            h: "2.8125rem",
             fontSize: "xl",
             _placeholder: {
               fontSize: "xl",
@@ -118,20 +145,50 @@ export const theme = extendTheme({
       },
     },
 
+    Flex: {
+      variants: {
+        "no-scrollbar": {
+          field: {
+            bg: "gray.1",
+            _placeholder: {
+              color: "gray.3",
+            },
+            _focus: {
+              bg: "gray.1",
+              borderColor: "gray.2",
+            },
+            _hover: {
+              bg: "gray.1",
+            },
+          },
+        },
+      },
+    },
+
     Text: {
       baseStyle: {
         lineHeight: "100%",
+        color: "black",
+        fontSize: "1.375rem",
       },
     },
 
     Heading: {
       baseStyle: {
         lineHeight: "100%",
+        color: "black",
       },
       sizes: {
         "3xl": {
           fontSize: "3rem",
         },
+      },
+    },
+
+    Container: {
+      baseStyle: {
+        maxWidth: "1440px",
+        paddingX: ["24px", "50px", "70px"],
       },
     },
   },

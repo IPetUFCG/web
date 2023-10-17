@@ -52,7 +52,7 @@ export default function SignInPage() {
       <Flex h="full" justify="center" align="center">
         <Form title="Acesse o UPets" onSubmit={handleSubmit(onSubmit)}>
           <>
-            <Stack w="full" gap="7px">
+            <Stack w="full" gap="0.4375rem">
               <FormControl isInvalid={!!errors.email}>
                 <FormLabel size="lg">E-mail</FormLabel>
                 <Input
@@ -79,7 +79,7 @@ export default function SignInPage() {
                     placeholder="euamocachorro"
                     size="lg"
                     type={passwordType}
-                    pr="40px"
+                    pr="2.5rem"
                     {...register("password", {
                       required: "Você precisa passar um senha",
                     })}
@@ -105,7 +105,7 @@ export default function SignInPage() {
               </Link>
             </Stack>
 
-            <Stack gap="7px" w="full">
+            <Stack gap="0.4375rem" w="full">
               <Button
                 type="submit"
                 variant="unstyled"
@@ -115,7 +115,7 @@ export default function SignInPage() {
               >
                 Entrar!
               </Button>
-              <HStack gap="7px" h="35px">
+              <HStack gap="0.4375rem" h="2.1875rem">
                 <AuthProvidersButtons authWithGithub={githubLogin} />
               </HStack>
             </Stack>

@@ -37,7 +37,7 @@ export default function NavigationLink() {
   if (!paths[pathname]) return null;
 
   return (
-    <Flex h="60px" justify="center" align="center" bg="black" color="white">
+    <Flex h="3.75rem" justify="center" align="center" bg="black" color="white">
       <Link href={paths[pathname]?.redirectTo} fontSize="2xl" fontWeight="bold">
         {paths[pathname]?.text}{" "}
         <Text as="span" textDecor="underline">

@@ -62,7 +62,7 @@ export default function SignUpPage() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <>
-            <Stack w="full" gap="7px">
+            <Stack w="full" gap="0.4375rem">
               <FormControl isInvalid={!!errors.name}>
                 <FormLabel size="lg">Nome</FormLabel>
                 <Input
@@ -101,7 +101,7 @@ export default function SignUpPage() {
                 )}
               </FormControl>
 
-              <HStack gap="10px">
+              <HStack gap="0.625rem">
                 <FormControl isInvalid={!!errors.password}>
                   <FormLabel size="lg">Senha</FormLabel>
                   <InputGroup>
@@ -109,7 +109,7 @@ export default function SignUpPage() {
                       placeholder="euamocachorro"
                       size="lg"
                       type={passwordType}
-                      pr="40px"
+                      pr="2.5rem"
                       {...register("password", {
                         required: "Você precisa passar um senha",
                       })}
@@ -147,7 +147,7 @@ export default function SignUpPage() {
               </HStack>
             </Stack>
 
-            <Stack gap="7px" w="full">
+            <Stack gap="0.4375rem" w="full">
               <Button
                 type="submit"
                 variant="unstyled"
@@ -157,7 +157,7 @@ export default function SignUpPage() {
               >
                 Cadastre-se!
               </Button>
-              <HStack gap="7px" h="35px">
+              <HStack gap="0.4375rem" h="2.1875rem">
                 <AuthProvidersButtons authWithGithub={githubLogin} />
               </HStack>
             </Stack>

@@ -58,7 +58,7 @@ export default function ChangePage() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <>
-            <HStack w="full" gap="10px">
+            <HStack w="full" gap="0.625rem">
               <FormControl isInvalid={!!errors.password}>
                 <FormLabel size="lg">Senha</FormLabel>
                 <InputGroup>
@@ -66,7 +66,7 @@ export default function ChangePage() {
                     placeholder="euamocachorro"
                     size="lg"
                     type={passwordType}
-                    pr="40px"
+                    pr="2.5rem"
                     {...register("password", {
                       required: "Você precisa passar um senha",
                     })}
