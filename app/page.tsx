@@ -1,5 +1,7 @@
 "use client";
 
+import Head from "next/head";
+
 import Brand from "@/src/components/sections/Brand";
 import Introduction from "@/src/components/sections/Introduction";
 import AboutUs from "@/src/components/sections/AboutUs";
@@ -10,14 +12,19 @@ import Video from "@/src/components/sections/Video";
 
 export default function Home() {
   return (
-    <main>
-      <Brand />
-      <Introduction />
-      <AboutUs />
-      <OurPets />
-      <Video />
-      <FAQ />
-      <Footer />
-    </main>
+    <>
+      <Head>
+        <title>UPets</title>
+      </Head>
+      <main>
+        <Brand />
+        <Introduction />
+        <AboutUs />
+        <OurPets />
+        <Video />
+        <FAQ />
+        <Footer />
+      </main>
+    </>
   );
 }
