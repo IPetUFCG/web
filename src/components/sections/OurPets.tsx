@@ -2,6 +2,7 @@ import { Flex, Heading, Stack } from "@chakra-ui/react";
 
 import { Pet } from "@/src/types/pet";
 import Card from "../general/pet/Card";
+import Doodle from "../general/Doodle";
 
 export default function OurPets() {
   const pets: Pet[] = [
@@ -14,7 +15,7 @@ export default function OurPets() {
   ];
 
   return (
-    <Stack py="6.25rem" bg="white" gap="3.125rem">
+    <Stack py="6.25rem" bg="white" gap="3.125rem" pos="relative">
       <Heading as="h2" fontSize="1.875rem" textAlign="center">
         Nosso Queridos
       </Heading>
@@ -41,6 +42,17 @@ export default function OurPets() {
           );
         })}
       </Flex>
+      <Doodle
+        variant="dog"
+        w="7.5rem"
+        h="6.875rem"
+        right="0"
+        top="7.5rem"
+        pos="absolute"
+        style={{
+          transform: "rotate(-90deg)",
+        }}
+      />
     </Stack>
   );
 }

@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import Doodle from "../general/Doodle";
 
 interface QuestionProps {
   question: string;
@@ -30,7 +31,7 @@ export default function FAQ() {
   return (
     <Box as="section" py="6.25rem" bg="white" gap="3.125rem">
       <Container>
-        <Stack gap="3.125rem">
+        <Stack gap="3.125rem" pos="relative">
           <Heading as="h2" fontSize="1.875rem" textAlign="center">
             Perguntas Frequentes
           </Heading>
@@ -82,6 +83,14 @@ export default function FAQ() {
               </AccordionItem>
             ))}
           </Accordion>
+          <Doodle
+            variant="dog"
+            w="7.5rem"
+            h="6.875rem"
+            right="0"
+            bottom="-6.25rem"
+            pos="absolute"
+          />
         </Stack>
       </Container>
     </Box>

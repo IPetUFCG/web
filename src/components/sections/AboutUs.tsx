@@ -1,10 +1,11 @@
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import Doodle from "../general/Doodle";
 
 export default function AboutUs() {
   return (
     <Box py="6.25rem" bg="gray.2">
       <Container>
-        <Stack gap="3.125rem">
+        <Stack gap="3.125rem" pos="relative">
           <Heading as="h2" fontSize="1.875rem">
             Quem somos? Qual o nosso objetivo?
           </Heading>
@@ -20,6 +21,17 @@ export default function AboutUs() {
             programas de publicação como o Aldus PageMaker que incluem versões
             do Lorem Ipsum.
           </Text>
+          <Doodle
+            variant="cat-1"
+            w="10rem"
+            h="4.96rem"
+            right="0"
+            top="-6.25rem"
+            pos="absolute"
+            style={{
+              transform: "rotate(180deg)",
+            }}
+          />
         </Stack>
       </Container>
     </Box>

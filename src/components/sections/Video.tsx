@@ -1,10 +1,11 @@
 import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import Doodle from "../general/Doodle";
 
 export default function Video() {
   return (
     <Box py="6.25rem" bgColor="blue" bgImage="/foots.png">
       <Container>
-        <Stack gap="3.125rem" align="center">
+        <Stack gap="3.125rem" align="center" pos="relative">
           <Heading
             as="h2"
             fontSize="1.875rem"
@@ -41,6 +42,14 @@ export default function Video() {
               }}
             ></iframe>
           </Box>
+          <Doodle
+            variant="cat-2"
+            w="10rem"
+            h="4.96rem"
+            left="0"
+            bottom="-6.25rem"
+            pos="absolute"
+          />
         </Stack>
       </Container>
     </Box>

@@ -1,5 +1,6 @@
 import { Link } from "@chakra-ui/next-js";
 import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
+import Doodle from "../general/Doodle";
 
 export default function Brand() {
   return (
@@ -33,6 +34,18 @@ export default function Brand() {
             h="full"
             w="full"
             objectFit="contain"
+          />
+
+          <Doodle
+            variant="cat-1"
+            h={{ base: "10rem", md: "21.875rem" }}
+            w={{ base: "20rem", md: "43.41775rem" }}
+            pos="absolute"
+            left="50%"
+            style={{
+              transform: "translateX(-50%)",
+            }}
+            bottom="-6.25rem"
           />
         </Flex>
       </Container>
