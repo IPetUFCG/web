@@ -6,21 +6,21 @@ export default function Card({ pet }: { pet: Pet }) {
   const { name, image } = pet;
   return (
     <Stack
-      border="3px solid"
+      border="0.1875rem solid"
       borderColor="black"
-      boxShadow="-4px 4px 0 0 black"
-      rounded="7px"
-      gap="15px"
-      p="20px"
+      boxShadow="-0.25rem 0.25rem 0 0 black"
+      rounded="0.4375rem"
+      gap="0.9375rem"
+      p="1.25rem"
     >
       <Image
         src={image}
         alt={`Imagem do Pet: ${name}`}
-        h="400px"
-        w="300px"
+        h="25rem"
+        w="18.75rem"
         __css={{ objectFit: "cover" }}
       />
-      <Text fontSize="30px" fontWeight="bold">
+      <Text fontSize="1.875rem" fontWeight="bold">
         {name}
       </Text>
     </Stack>

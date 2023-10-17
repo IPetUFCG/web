@@ -28,21 +28,26 @@ export default function FAQ() {
   ];
 
   return (
-    <Box as="section" py="100px" bg="white" gap="50px">
+    <Box as="section" py="6.25rem" bg="white" gap="3.125rem">
       <Container>
-        <Stack gap="50px">
-          <Heading as="h2" fontSize="30px" textAlign="center">
+        <Stack gap="3.125rem">
+          <Heading as="h2" fontSize="1.875rem" textAlign="center">
             Perguntas Frequentes
           </Heading>
 
-          <Accordion display="flex" flexDir="column" gap="15px" allowToggle>
+          <Accordion
+            display="flex"
+            flexDir="column"
+            gap="0.9375rem"
+            allowToggle
+          >
             {faq.map(({ question, answer }, index) => (
               <AccordionItem
-                border="3px solid"
+                border="0.1875rem solid"
                 borderColor="black"
-                boxShadow="-4px 4px 0 0 black"
-                rounded="5px"
-                px="30px"
+                boxShadow="-0.25rem 0.25rem 0 0 black"
+                rounded="0.3125rem"
+                px="1.875rem"
                 key={`faq-question-${index}`}
               >
                 {({ isExpanded }) => (
@@ -51,25 +56,26 @@ export default function FAQ() {
                       display="flex"
                       justifyContent="space-between"
                       alignItems="center"
-                      h="80px"
+                      h="5rem"
                       _hover={{
                         bg: "none",
                       }}
                     >
-                      <Text fontWeight="medium">{question}</Text>
+                      <Text fontWeight="medium" textAlign="left">
+                        {question}
+                      </Text>
                       {isExpanded ? (
-                        <MinusIcon color="black" h="14px" w="14px" />
+                        <MinusIcon color="black" h="0.875rem" w="0.875rem" />
                       ) : (
-                        <AddIcon color="black" h="14px" w="14px" />
+                        <AddIcon color="black" h="0.875rem" w="0.875rem" />
                       )}
                     </AccordionButton>
                     <AccordionPanel
-                      py="30px"
-                      color="black"
+                      py="1.875rem"
                       borderTop="1px solid"
                       borderColor="orange"
                     >
-                      {answer}
+                      <Text>{answer}</Text>
                     </AccordionPanel>
                   </>
                 )}

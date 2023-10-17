@@ -16,16 +16,16 @@ export default function PasswordToggle({
 
   return (
     <InputRightElement
-      h="35px"
-      w="35px"
-      m="5px"
+      h="2.1875rem"
+      w="2.1875rem"
+      m="0.3125rem"
       transition="all 0.2s"
-      borderRadius="3px"
+      borderRadius="0.1875rem"
       _hover={{ bg: "gray.3" }}
       onClick={toggleType}
       cursor="pointer"
     >
-      <Icon h="15px" w="15px">
+      <Icon h="0.9375rem" w="0.9375rem">
         {type === "text" ? <ClosedEyeIcon /> : <OpenedEyeIcon />}
       </Icon>
     </InputRightElement>

@@ -1,11 +1,11 @@
 import { Link } from "@chakra-ui/next-js";
-import { Box, Container, Image, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Image, Text } from "@chakra-ui/react";
 
 export default function Brand() {
   return (
-    <Box as="section" py="100px" maxH="100vh" bg="orange">
+    <Box as="section" py="6.25rem" maxH="100vh" bg="orange">
       <Container>
-        <Box position="relative">
+        <Flex justify="center" position="relative">
           <Link
             position="absolute"
             top="0"
@@ -13,15 +13,15 @@ export default function Brand() {
             aria-label="Acesse o UPets"
             href="/auth/signin"
             bg="black"
-            h="45px"
+            h="2.8125rem"
             w="fit-content"
-            px="40px"
+            px="2.5rem"
             color="white"
             display="flex"
             alignItems="center"
-            rounded="5px"
+            rounded="0.3125rem"
           >
-            <Text fontWeight="bold" fontSize="16px" color="white">
+            <Text fontWeight="bold" fontSize="1rem" color="white">
               Acesse o UPets!
             </Text>
           </Link>
@@ -29,12 +29,12 @@ export default function Brand() {
           <Image
             alt="Logo da UPets e UFCG"
             src="/logo.png"
-            maxW="1200px"
+            maxW="75rem"
             h="full"
             w="full"
             objectFit="contain"
           />
-        </Box>
+        </Flex>
       </Container>
     </Box>
   );

@@ -4,7 +4,11 @@ export const theme = extendTheme({
   styles: {
     global: {
       html: {
-        fontSize: "62.5%",
+        fontSize: {
+          base: "55%",
+          md: "62.5%",
+          lg: "75%",
+        },
       },
       body: {
         fontSize: "1.6rem",
@@ -71,7 +75,7 @@ export const theme = extendTheme({
     Button: {
       sizes: {
         lg: {
-          h: "55px",
+          h: "3.4375rem",
           w: "100%",
           fontSize: "3xl",
           transition: "all 0.2s",
@@ -94,7 +98,7 @@ export const theme = extendTheme({
         lg: {
           fontWeight: "bold",
           fontSize: "xl",
-          mb: "2px",
+          mb: "0.125rem",
         },
       },
     },
@@ -111,7 +115,7 @@ export const theme = extendTheme({
       sizes: {
         lg: {
           field: {
-            h: "45px",
+            h: "2.8125rem",
             fontSize: "xl",
             _placeholder: {
               fontSize: "xl",
@@ -165,7 +169,7 @@ export const theme = extendTheme({
       baseStyle: {
         lineHeight: "100%",
         color: "black",
-        fontSize: "22px",
+        fontSize: "1.375rem",
       },
     },
 

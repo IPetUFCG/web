@@ -4,16 +4,22 @@ export default function Footer() {
   return (
     <Box bg="black" color="white">
       <Container>
-        <Flex h="150px" justify="space-between" align="center">
+        <Flex
+          h={{ base: "12.5rem", md: "9.375rem" }}
+          flexDir={{ base: "column-reverse", md: "row" }}
+          justify={{ base: "center", md: "space-between" }}
+          align={{ md: "center" }}
+          gap="1.25rem"
+        >
           <Text color="currentColor">© Todos os direitos reservados</Text>
           <Link
             href="https://github.com/IPetUFCG"
             aria-label="Acesse nosso repositório"
             target="_blank"
             display="flex"
-            gap="10px"
+            gap="0.625rem"
           >
-            <Icon viewBox="0 0 18 15" w="18px" h="15px">
+            <Icon viewBox="0 0 18 15" w="1.125rem" h="0.9375rem">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"

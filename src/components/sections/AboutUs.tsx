@@ -2,10 +2,10 @@ import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
 
 export default function AboutUs() {
   return (
-    <Box py="100px" bg="gray.2">
+    <Box py="6.25rem" bg="gray.2">
       <Container>
-        <Stack gap="50px">
-          <Heading as="h2" fontSize="30px">
+        <Stack gap="3.125rem">
+          <Heading as="h2" fontSize="1.875rem">
             Quem somos? Qual o nosso objetivo?
           </Heading>
           <Text lineHeight="base">

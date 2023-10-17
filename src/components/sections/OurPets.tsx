@@ -14,8 +14,8 @@ export default function OurPets() {
   ];
 
   return (
-    <Stack py="100px" bg="white" gap="50px">
-      <Heading as="h2" fontSize="30px" textAlign="center">
+    <Stack py="6.25rem" bg="white" gap="3.125rem">
+      <Heading as="h2" fontSize="1.875rem" textAlign="center">
         Nosso Queridos
       </Heading>
       <Flex
@@ -23,7 +23,7 @@ export default function OurPets() {
         scrollSnapType="x mandatory"
         overflowX="scroll"
         className="no-scrollbar"
-        pb="4px"
+        pb="0.25rem"
       >
         {pets.map((pet, index) => {
           const isLast = index === pets.length - 1;
@@ -33,8 +33,8 @@ export default function OurPets() {
               as="li"
               key={`outpets-pet-${index}`}
               scrollSnapAlign="center"
-              pl="20px"
-              pr={isLast ? "20px" : "0"}
+              pl="1.25rem"
+              pr={isLast ? "1.25rem" : "0"}
             >
               <Card pet={pet} />
             </Flex>
