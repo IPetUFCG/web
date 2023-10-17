@@ -5,7 +5,7 @@ export default function Main({
   children,
   uPetsBackground,
   ...containerProps
-}: ContainerProps & { children: JSX.Element; uPetsBackground?: boolean }) {
+}: ContainerProps & { children: React.ReactNode; uPetsBackground?: boolean }) {
   return (
     <Container as="main" h="100vh" w="100vw" {...containerProps}>
       {children}

@@ -7,6 +7,7 @@ export default function Background() {
         <Image
           key={"image-" + index}
           src="/logo.svg"
+          alt="logo"
           transform="rotate(-15deg)"
           w="2764px"
           h="1101px"
