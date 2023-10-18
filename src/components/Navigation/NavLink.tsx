@@ -14,6 +14,7 @@ const NavLink = ({ link, title }: NavLinkProps) => {
       py={1}
       rounded={"md"}
       backgroundColor="#636FFF"
+      color="white"
       _hover={{
         textDecoration: "none",
         transform: "scaleY(1.05)",
