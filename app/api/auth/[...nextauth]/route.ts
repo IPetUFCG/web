@@ -12,14 +12,20 @@ const providers = [
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials, req) {
-      let user: User | null = null;
-      if (credentials?.email === "luiz@mail.com")
-        user = {
-          id: "123",
-          name: "Luiz",
-          email: "luiz.felipe.farias@ccc.ufcg.edu.br",
-        };
-      return user;
+      const res = await fetch("http://locahost:3001/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(credentials),
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log({ res });
+      // const user = await res.json();
+
+      // // If no error and we have user data, return it
+      // if (res.ok && user) {
+      //   return user;
+      // }
+      // Return null if user data could not be retrieved
+      return null;
     },
   }),
   //   GoogleProvider({
@@ -30,10 +36,10 @@ const providers = [
   //     clientId: process.env.FACEBOOK_ID || "",
   //     clientSecret: process.env.FACEBOOK_SECRET || "",
   //   }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID || "",
-      clientSecret: process.env.GITHUB_SECRET || "",
-    }),
+  GithubProvider({
+    clientId: process.env.GITHUB_ID || "",
+    clientSecret: process.env.GITHUB_SECRET || "",
+  }),
 ];
 
 const handler = NextAuth({
