@@ -55,7 +55,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <Main uPetsBackground>
+    <Main bg="pink">
       <Flex h="full" justify="center" align="center">
         <Form
           title="Nós da UPets te damos as boas-vindas!"

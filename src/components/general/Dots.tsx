@@ -6,9 +6,9 @@ export default function Dots(props: {
   space?: BoxProps["top"];
   bg?: BoxProps["bg"];
 }) {
-  const h = "0.625rem";
-  const w = "0.625rem";
-  const space = "0.625rem";
+  const h = "0.9375rem";
+  const w = "0.9375rem";
+  const space = "0.9375rem";
   const bg = "black";
 
   return (

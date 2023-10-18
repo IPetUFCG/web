@@ -29,7 +29,7 @@ export default function ForgotPage() {
   };
 
   return (
-    <Main uPetsBackground>
+    <Main bg="orange">
       <Flex h="full" justify="center" align="center">
         <Form
           title="Xiii esqueceu?"

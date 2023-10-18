@@ -48,7 +48,7 @@ export default function SignInPage() {
   };
 
   return (
-    <Main uPetsBackground>
+    <Main bg="blue">
       <Flex h="full" justify="center" align="center">
         <Form title="Acesse o UPets" onSubmit={handleSubmit(onSubmit)}>
           <>
@@ -97,7 +97,7 @@ export default function SignInPage() {
               <Link
                 href="/auth/forgot"
                 textAlign="right"
-                fontSize="lg"
+                fontSize="1rem"
                 alignSelf="end"
                 w="min-content"
               >
