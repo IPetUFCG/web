@@ -1,5 +1,6 @@
 "use client";
 import NavBar from "@/src/components/Navigation/NavBar";
+import CustomIconButton from "@/src/components/general/CustomIconButton";
 import CardsList from "@/src/components/general/Reports/CardsList";
 import CreateReportModal from "@/src/components/general/Reports/CreateReport/CreateReportModal";
 import FilterBar from "@/src/components/general/Reports/FilterBar";
@@ -37,11 +38,10 @@ export default function HomePage() {
         <FilterBar />
         <CardsList items={items} />
         <Box position="fixed" bottom={16} right={32}>
-          <IconButton
+          <CustomIconButton
             w="60px"
             h="60px"
             size="lg"
-            colorScheme="messenger"
             borderRadius="50%"
             aria-label="create report"
             onClick={() => setOpenCreateModal(true)}

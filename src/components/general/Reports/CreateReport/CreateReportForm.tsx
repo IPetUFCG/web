@@ -8,19 +8,27 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import React from "react";
+import FileInput, { ImageType } from "../../FileInput/FileInput";
 
 const CreateReportForm = () => {
-  const [imageSrc, setImageSrc] = React.useState("");
+  const [images, setImages] = React.useState<ImageType[]>([]);
 
   const handleImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
 
     if (!file) return;
 
+    if (images.length === 3) return;
+
     const fileReader = new FileReader();
     fileReader.onload = function (e) {
       const base64String = e.target?.result as string;
-      setImageSrc(base64String);
+      const newImage: ImageType = {
+        fileSrc: base64String,
+        title: file.name,
+        fileSize: file.size,
+      };
+      setImages((prev) => [...prev, newImage]);
     };
 
     fileReader.readAsDataURL(file);
@@ -31,19 +39,14 @@ const CreateReportForm = () => {
       <Flex mt={8} w="100%" flexDirection="column" gap={8}>
         <Flex flexDirection="column">
           <FormLabel>Imagem</FormLabel>
-          <Box
-            w={imageSrc ? "100%" : undefined}
-            h={imageSrc ? "200px" : undefined}
-            backgroundImage={imageSrc}
-            backgroundSize="contain"
-            backgroundPosition="center"
-            backgroundRepeat="no-repeat"
-            mb={4}
+          <FileInput
+            images={images}
+            onChange={handleImage}
+            disabled={images.length === 3}
           />
-          <Input onChange={handleImage} type="file" placeholder="" />
         </Flex>
         <Box>
-          <FormLabel>Animal</FormLabel>
+          <FormLabel>Pet</FormLabel>
           <Select></Select>
         </Box>
 
