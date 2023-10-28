@@ -7,10 +7,14 @@ type ActiveLinkProps = {
 function ActiveLink({ title }: ActiveLinkProps) {
   return (
     <Box
-      px={6}
+      px={4}
       py={1}
-      rounded={"md"}
-      background="#FFA23B"
+      textTransform="uppercase"
+      fontWeight={600}
+      letterSpacing=".1em"
+      fontSize="1rem"
+      color="white"
+      borderBottom="1px solid #FFA23B"
       _hover={{
         cursor: "default",
       }}
