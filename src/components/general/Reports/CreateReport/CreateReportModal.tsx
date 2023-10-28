@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import CreateReportForm from "./CreateReportForm";
+import CustomModalHeader from "../../Modal/CustomModalHeader";
 
 type CreateReportModalProps = {
   isOpen: boolean;
@@ -22,8 +23,7 @@ const CreateReportModal = ({ handleClose, isOpen }: CreateReportModalProps) => {
     <Modal isOpen={isOpen} onClose={handleClose}>
       <ModalOverlay />
       <ModalContent minW="520px">
-        <ModalHeader>Criar Novo Reporte</ModalHeader>
-        <ModalCloseButton />
+        <CustomModalHeader title="Criar Novo Reporte" onClose={handleClose} />
         <ModalBody>
           <CreateReportForm />
         </ModalBody>
@@ -33,7 +33,7 @@ const CreateReportModal = ({ handleClose, isOpen }: CreateReportModalProps) => {
               Cancelar
             </Button>
             <Button
-              backgroundColor="#0078FF"
+              backgroundColor="#636FFF"
               color="white"
               _hover={{
                 backgroundColor: "#0063D1",
