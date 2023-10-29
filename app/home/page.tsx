@@ -1,12 +1,6 @@
 "use client";
 import NavBar from "@/src/components/Navigation/NavBar";
-import CustomIconButton from "@/src/components/general/CustomIconButton";
-import CardsList from "@/src/components/general/Reports/CardsList";
-import CreateReportModal from "@/src/components/general/Reports/CreateReport/CreateReportModal";
-import FilterBar from "@/src/components/general/Reports/FilterBar";
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, Container, IconButton } from "@chakra-ui/react";
-import React from "react";
+import ReportContainer from "@/src/components/general/Reports/Tabs/ReportContainer";
 
 const links = [
   {
@@ -19,40 +13,11 @@ const links = [
   },
 ];
 
-const items = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-];
-
 export default function HomePage() {
-  const [openCreateModal, setOpenCreateModal] = React.useState(false);
-
   return (
     <>
       <NavBar items={links} />
-      <Container my={8}>
-        <FilterBar />
-        <CardsList items={items} />
-        <Box position="fixed" bottom={16} right={32}>
-          <CustomIconButton
-            w="60px"
-            h="60px"
-            size="lg"
-            borderRadius="50%"
-            aria-label="create report"
-            onClick={() => setOpenCreateModal(true)}
-            icon={<AddIcon color="white" />}
-          />
-        </Box>
-        <CreateReportModal
-          isOpen={openCreateModal}
-          handleClose={() => setOpenCreateModal(false)}
-        />
-      </Container>
+      <ReportContainer />
     </>
   );
 }
