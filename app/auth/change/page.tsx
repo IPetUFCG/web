@@ -51,7 +51,7 @@ export default function ChangePage() {
   };
 
   return (
-    <Main uPetsBackground>
+    <Main bg="green">
       <Flex h="full" justify="center" align="center">
         <Form
           title="Bora alterar essa senha!"
