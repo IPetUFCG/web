@@ -6,8 +6,8 @@ import AuthProvider from "@/src/context/AuthProvider";
 const font = Red_Hat_Display({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
-  title: "My POC",
-  description: "Testing tecnologies",
+  title: "UPets",
+  description: "Sistema de registro de animais da UFCG Campus Campina Grande",
 };
 
 export default function RootLayout({

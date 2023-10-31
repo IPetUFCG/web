@@ -20,6 +20,14 @@ import Form from "@/src/components/auth/Form";
 import PasswordToggle from "@/src/components/auth/PasswordToggle";
 import AuthProvidersButtons from "@/src/components/auth/AuthProvidersButtons";
 import { usePasswordToggle } from "@/src/hooks/usePasswordToggle";
+import { useAxios } from "@/src/hooks/useAxios";
+
+type SignUpForm = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
 
 export default function SignUpPage() {
   const {
@@ -27,30 +35,40 @@ export default function SignUpPage() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<{
-    name: string;
-    email: string;
-    password: string;
-    passwordConfirmation: string;
-  }>();
+  } = useForm<SignUpForm>();
 
   const password = watch("password");
+  const axios = useAxios();
 
   const [passwordType, setPasswordType] = usePasswordToggle();
 
-  const onSubmit = async (data) => {
-    const result = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: true,
-      callbackUrl: "/pets",
-    });
+  const onSubmit = async (formData: SignUpForm) => {
+    console.log({ formData });
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      const response = await axios.post("/auth/signup", payload);
+      console.log({ response });
+      if (response.status === 200)
+        await signIn("credentials", {
+          email: payload.email,
+          password: payload.password,
+          redirect: true,
+          callbackUrl: "/home",
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const githubLogin = async () => {
     await signIn("github", {
       redirect: true,
-      callbackUrl: "/pets",
+      callbackUrl: "/home",
     });
   };
 
