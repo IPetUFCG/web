@@ -145,7 +145,7 @@ export default function SignUpPage() {
                 </FormControl>
 
                 <FormControl isInvalid={!!errors.passwordConfirmation}>
-                  <FormLabel size="lg">Confirmação da Senha</FormLabel>
+                  <FormLabel size="lg">Confirmar Senha</FormLabel>
                   <Input
                     placeholder="euamocachorro"
                     size="lg"
