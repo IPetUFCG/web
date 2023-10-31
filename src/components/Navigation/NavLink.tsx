@@ -10,14 +10,17 @@ const NavLink = ({ link, title }: NavLinkProps) => {
   return (
     <Box
       as="a"
-      px={6}
+      px={4}
       py={1}
-      rounded={"md"}
-      backgroundColor="#636FFF"
+      backgroundColor="transparent"
+      textTransform="uppercase"
+      fontWeight={600}
+      letterSpacing=".1em"
+      fontSize="1rem"
+      color="#767880"
       _hover={{
         textDecoration: "none",
-        transform: "scaleY(1.05)",
-        transition: "all 150ms ease-in-out",
+        color: "white",
       }}
       href={link}
     >
