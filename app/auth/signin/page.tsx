@@ -2,7 +2,8 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import {
   Button,
@@ -29,14 +30,25 @@ export default function SignInPage() {
     formState: { errors },
   } = useForm<{ email: string; password: string }>();
 
+  const { status } = useSession();
+  const router = useRouter();
+
   const [passwordType, setPasswordType] = usePasswordToggle();
 
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (status === "authenticated") {
+    router?.push("/home");
+  }
+
   const onSubmit = async (data) => {
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: true,
-      callbackUrl: "/pets",
+      callbackUrl: "/home",
     });
   };
 

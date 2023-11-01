@@ -6,13 +6,13 @@ import { useRefreshToken } from "./useRefreshToken";
 
 export const useAxios = () => {
   const refreshToken = useRefreshToken();
-  const { data: session } = useSession();
+  const session = useSession();
 
   useEffect(() => {
     const requestIntercept = axios.interceptors.request.use(
       async (request) => {
         if (!request.headers.Authorization) {
-          request.headers.Authorization = `Bearer ${session?.user.token}`;
+          request.headers.Authorization = `Bearer ${session?.data?.user.token}`;
         }
         return request;
       },
