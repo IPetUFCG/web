@@ -5,15 +5,8 @@ import CardsList from "../CardsList";
 import CreateReportModal from "../CreateReport/CreateReportModal";
 import FilterBar from "../FilterBar";
 import React from "react";
-
-const items = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-];
+import { useAxios } from "../../../../hooks/useAxios";
+import { useSession } from "next-auth/react";
 
 const myItems = [{ id: 7 }, { id: 8 }, { id: 9 }];
 
@@ -23,10 +16,28 @@ const TabIndexes = {
 } as const;
 
 export default function ReportContainer() {
+  const axios = useAxios();
+  const session = useSession();
+
   const [openCreateModal, setOpenCreateModal] = React.useState(false);
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [allReports, setAllReports] = React.useState(items);
-  const [myReports, setMyReports] = React.useState(myItems);
+  const [allReports, setAllReports] = React.useState([]);
+  const [myReports, setMyReports] = React.useState([]);
+
+  React.useEffect(() => {
+    const getReportsRequest = async () => {
+      try {
+        const response = await axios.get("/reports");
+        const myReports = await axios.get(`/reports/${session.data?.user.id}`);
+        setAllReports(response.data);
+        setMyReports(myReports.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (session.status === "authenticated") void getReportsRequest();
+  }, [session]);
 
   return (
     <Container my={8}>
