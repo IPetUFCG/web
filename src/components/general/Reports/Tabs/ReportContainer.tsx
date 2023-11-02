@@ -1,5 +1,13 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { Tabs, Flex, TabList, Tab, Container, Box } from "@chakra-ui/react";
+import {
+  Tabs,
+  Flex,
+  TabList,
+  Tab,
+  Container,
+  Box,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import CustomIconButton from "../../CustomIconButton";
 import CardsList from "../CardsList";
 import CreateReportModal from "../CreateReport/CreateReportModal";
@@ -7,8 +15,7 @@ import FilterBar from "../FilterBar";
 import React from "react";
 import { useAxios } from "../../../../hooks/useAxios";
 import { useSession } from "next-auth/react";
-
-const myItems = [{ id: 7 }, { id: 8 }, { id: 9 }];
+import { IReport } from "@/src/types/report";
 
 const TabIndexes = {
   ALL: 0,
@@ -19,10 +26,12 @@ export default function ReportContainer() {
   const axios = useAxios();
   const session = useSession();
 
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+
   const [openCreateModal, setOpenCreateModal] = React.useState(false);
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [allReports, setAllReports] = React.useState([]);
-  const [myReports, setMyReports] = React.useState([]);
+  const [allReports, setAllReports] = React.useState<IReport[]>([]);
+  const [myReports, setMyReports] = React.useState<IReport[]>([]);
 
   React.useEffect(() => {
     const getReportsRequest = async () => {
@@ -39,8 +48,34 @@ export default function ReportContainer() {
     if (session.status === "authenticated") void getReportsRequest();
   }, [session]);
 
+  const deleteReport = (id: number) => {
+    setAllReports((prev) => {
+      return prev.filter((report) => report.id !== id);
+    });
+    setMyReports((prev) => {
+      return prev.filter((report) => report.id !== id);
+    });
+  };
+
+  const editReport = (report: IReport, id: number) => {
+    setAllReports((prev) => {
+      const updatedResponse = prev.map((item) => {
+        if (item.id === id) return report;
+        return item;
+      });
+      return updatedResponse;
+    });
+    setMyReports((prev) => {
+      const updatedResponse = prev.map((item) => {
+        if (item.id === id) return report;
+        return item;
+      });
+      return updatedResponse;
+    });
+  };
+
   return (
-    <Container my={8}>
+    <Container my={8} p={isMobile ? 2 : undefined}>
       <Tabs size="lg" onChange={(index) => setTabIndex(index)}>
         <Flex justify="space-between" alignItems="center">
           <TabList>
@@ -52,6 +87,8 @@ export default function ReportContainer() {
         <CardsList
           items={tabIndex === TabIndexes.ALL ? allReports : myReports}
           owner={tabIndex === TabIndexes.MY_REPORTS}
+          deleteReport={deleteReport}
+          editReport={editReport}
         />
       </Tabs>
       <Box position="fixed" bottom={16} right={32}>
@@ -68,6 +105,10 @@ export default function ReportContainer() {
       <CreateReportModal
         isOpen={openCreateModal}
         handleClose={() => setOpenCreateModal(false)}
+        handleCreate={(newReport: any) => {
+          setAllReports((prev) => [...prev, newReport]);
+          setMyReports((prev) => [...prev, newReport]);
+        }}
       />
     </Container>
   );
