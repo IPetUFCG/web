@@ -4,7 +4,7 @@ import ReportContainer from "@/src/components/general/Reports/Tabs/ReportContain
 
 const links = [
   {
-    label: "Reportes",
+    label: "Publicações",
     link: "/home",
   },
   {
