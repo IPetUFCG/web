@@ -15,6 +15,7 @@ import {
   Flex,
   FormErrorMessage,
   HStack,
+  Spinner,
 } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import Main from "@/src/components/general/Main";
@@ -22,6 +23,7 @@ import Form from "@/src/components/auth/Form";
 import AuthProvidersButtons from "@/src/components/auth/AuthProvidersButtons";
 import { usePasswordToggle } from "@/src/hooks/usePasswordToggle";
 import PasswordToggle from "@/src/components/auth/PasswordToggle";
+import { useAxios } from "@/src/hooks/useAxios";
 
 export default function SignInPage() {
   const {
@@ -32,11 +34,22 @@ export default function SignInPage() {
 
   const { status } = useSession();
   const router = useRouter();
+  const axios = useAxios();
 
   const [passwordType, setPasswordType] = usePasswordToggle();
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return (
+      <Flex w="100%" h="100%" justify="center" align="center">
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </Flex>
+    );
   }
 
   if (status === "authenticated") {
@@ -44,12 +57,18 @@ export default function SignInPage() {
   }
 
   const onSubmit = async (data) => {
-    await signIn("credentials", {
+    const response = await axios.post("/auth/signin", {
       email: data.email,
       password: data.password,
-      redirect: true,
-      callbackUrl: "/home",
     });
+
+    if (response.status === 200)
+      await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: true,
+        callbackUrl: "/home",
+      });
   };
 
   const githubLogin = async () => {
