@@ -3,6 +3,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axiosInstance from "@/src/api/instance";
 
 const providers = [
   CredentialsProvider({
@@ -12,18 +13,20 @@ const providers = [
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials, req) {
-      const res = await fetch("http://locahost:3001/auth/signup", {
+      const res = await fetch("http://localhost:3001/auth/signin", {
         method: "POST",
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({
+          email: credentials?.email,
+          password: credentials?.password,
+        }),
         headers: { "Content-Type": "application/json" },
       });
-      console.log({ res });
-      // const user = await res.json();
+      const user = await res.json();
 
       // // If no error and we have user data, return it
-      // if (res.ok && user) {
-      //   return user;
-      // }
+      if (res.ok && user) {
+        return user;
+      }
       // Return null if user data could not be retrieved
       return null;
     },

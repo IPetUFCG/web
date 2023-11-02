@@ -1,9 +1,10 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
+import Carousel from "../ImageSlider/Carousel";
 
 export type ImageType = {
-  fileSrc: string;
+  fileUrl: string;
   title: string;
   fileSize?: number;
   alt?: string;
@@ -27,6 +28,7 @@ export default function FileInput({
       <Flex
         p={8}
         gap={4}
+        mb={4}
         justify="center"
         alignItems="center"
         borderRadius="md"
@@ -51,20 +53,7 @@ export default function FileInput({
         <AddIcon />
         <span>Adicione Fotos</span>
       </Flex>
-      <Flex gap={4} mt={4}>
-        {images.map((image) => (
-          <Box
-            key={image.title}
-            w={image.fileSrc ? "100%" : undefined}
-            h={image.fileSrc ? "200px" : undefined}
-            backgroundImage={image.fileSrc}
-            backgroundSize="contain"
-            backgroundPosition="center"
-            backgroundRepeat="no-repeat"
-            mb={4}
-          />
-        ))}
-      </Flex>
+      {images.length ? <Carousel images={images} /> : null}
       <input
         ref={inputRef}
         onChange={onChange}
