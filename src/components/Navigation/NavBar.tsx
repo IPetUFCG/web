@@ -33,6 +33,10 @@ const links = [
     label: "Pets",
     link: "/pets",
   },
+  {
+    label: "Lar Temporario",
+    link: "/temporaryHouses",
+  },
 ];
 
 function NavBar() {
