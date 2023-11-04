@@ -1,7 +1,5 @@
 import { ITemporaryHouse } from "@/src/types/temporaryHouse";
-import { useAxios } from "../../hooks/useAxios";
 import { Container, Flex } from "@chakra-ui/react";
-import { useSession } from "next-auth/react";
 import React from "react";
 import TemporaryHouseItem from "./TemporaryHouseItem";
 
@@ -16,7 +14,7 @@ export default function TemporaryHouseList({
 }: TemporaryHouseListProps) {
   return (
     <Container p={isMobile ? 2 : undefined}>
-      <Flex flexDir="column">
+      <Flex flexDir="column" gap={8}>
         {temporaryHouses.map((house) => (
           <TemporaryHouseItem
             key={house.id}

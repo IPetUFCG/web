@@ -27,7 +27,30 @@ export default function TemporaryHouseContainer() {
     {
       value: 1,
       label: "Meu Lar Temporario",
-      content: <MyTemporaryHouse temporaryHouse={userTemporaryHouse} />,
+      content: (
+        <MyTemporaryHouse
+          addTemporaryHouse={(newData) => {
+            setUserTemporaryHouse(newData);
+            setTemporaryHouses((prev) => [...prev, newData]);
+          }}
+          changeTemporaryHouse={(updatedData) => {
+            setUserTemporaryHouse(updatedData);
+            setTemporaryHouses((prev) => {
+              return prev.map((tempHouse) => {
+                if (tempHouse.id === updatedData.id) return updatedData;
+                return tempHouse;
+              });
+            });
+          }}
+          deleteTemporaryHouse={(id) => {
+            setUserTemporaryHouse(undefined);
+            setTemporaryHouses((prev) =>
+              prev.filter((house) => house.id !== id)
+            );
+          }}
+          temporaryHouse={userTemporaryHouse}
+        />
+      ),
     },
   ];
 

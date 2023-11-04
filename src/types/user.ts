@@ -18,3 +18,12 @@ export interface IAddress {
   state: string;
   complement?: string;
 }
+
+export interface ViaCEPResponse {
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+}

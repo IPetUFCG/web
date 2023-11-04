@@ -13,14 +13,18 @@ import React from "react";
 export type DeleteReportModalProps = {
   onCofirm: () => void;
   isMobile?: boolean;
+  title: string;
+  content: string;
 } & Omit<AlertDialogProps, "children">;
 
-const DeleteReportModal = ({
+const DeleteAlert = ({
   onCofirm,
   isOpen,
   leastDestructiveRef,
   onClose,
   isMobile,
+  title,
+  content,
 }: DeleteReportModalProps) => {
   return (
     <AlertDialog
@@ -31,13 +35,10 @@ const DeleteReportModal = ({
       <AlertDialogOverlay>
         <AlertDialogContent minWidth={isMobile ? undefined : "480px"}>
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Deletar Publicação
+            {title}
           </AlertDialogHeader>
 
-          <AlertDialogBody>
-            Tem certeza que deseja excluir esta publicação? Esta ação não poderá
-            ser desfeita.
-          </AlertDialogBody>
+          <AlertDialogBody>{content}</AlertDialogBody>
 
           <AlertDialogFooter>
             <Button ref={leastDestructiveRef as any} onClick={onClose}>
@@ -53,4 +54,4 @@ const DeleteReportModal = ({
   );
 };
 
-export default DeleteReportModal;
+export default DeleteAlert;

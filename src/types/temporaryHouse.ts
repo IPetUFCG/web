@@ -1,5 +1,5 @@
 import { IPet } from "./pet";
-import { IUser } from "./user";
+import { IAddress, IUser } from "./user";
 
 export interface ITemporaryHouse {
   addressId: number;
@@ -11,4 +11,13 @@ export interface ITemporaryHouse {
   pets: IPet[];
   title: string;
   updatedAt: string;
+  address: IAddress;
+}
+
+export interface TemporaryHousePayload {
+  description?: string;
+  careTakerIds: number[];
+  pets: number[];
+  address: IAddress;
+  title: string;
 }
