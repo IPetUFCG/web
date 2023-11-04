@@ -1,3 +1,5 @@
+import { IPet } from "./pet";
+
 export interface IUser {
   birthDate: string | null;
   createdAt: string;
@@ -7,6 +9,7 @@ export interface IUser {
   name: string;
   phone: string | null;
   role: string;
+  pets?: IPet[];
 }
 
 export interface IAddress {

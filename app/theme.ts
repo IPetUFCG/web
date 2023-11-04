@@ -39,33 +39,13 @@ export const theme = extendTheme({
   },
 
   colors: {
-    black: "#000000",
     gray: {
       1: "#F2F2F2",
       2: "#EEEEEE",
       3: "#DDDDDD",
       4: "#BBBBBB",
     },
-    darkgray: "#111111",
-    white: "#FFFFFF",
-    orange: "#FFA23B",
-    orange_pink: "#F68253",
-    pink: "#E84DA9",
-    pink_blue: "#DE48FD",
-    blue: "#636FFF",
-    blue_green: "#5CC8FD",
-    green: "#4DE8AF",
-    green_yellow: "#99FE96",
-    yellow: "#ECFF55",
-    github: {
-      black: "#24292f",
-      white: "#e6edf3",
-    },
-    google: {
-      white: "#e8eaed",
-    },
   },
-
   fonts: {
     heading: "'Red Hat Display', sans-serif",
     body: "'Red Hat Display', sans-serif",
@@ -84,14 +64,7 @@ export const theme = extendTheme({
           },
         },
       },
-      variants: {
-        orange: {
-          bg: "orange",
-        },
-        blue: {
-          bg: "blue",
-        },
-      },
+      variants: {},
     },
     FormLabel: {
       sizes: {

@@ -12,7 +12,7 @@ const FilterBar = () => {
   return (
     <Flex w="100%" justifyContent="end">
       <InputGroup w="30%" size="md">
-        <Input placeholder="Buscar por titulo ou animal" />
+        <Input variant="outline" placeholder="Buscar por titulo ou animal" />
         <InputRightElement>
           <IconButton
             variant="ghost"

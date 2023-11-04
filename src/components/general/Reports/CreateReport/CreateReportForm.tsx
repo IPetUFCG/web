@@ -79,6 +79,7 @@ const CreateReportForm = ({ register, images, setImages }) => {
         <Box>
           <FormLabel>Titulo</FormLabel>
           <Input
+            variant="outline"
             {...register("title", {
               required: "Você precisa informar um titulo",
             })}
