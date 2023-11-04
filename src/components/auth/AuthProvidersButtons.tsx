@@ -18,12 +18,23 @@ export default function AuthProvidersButtons({
           size="lg"
           h="full"
           onClick={authWithGithub}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
         >
           <GithubLogo h="1.5625rem" w="1.5625rem" />
         </Button>
       )}
       {authWithGoogle && (
-        <Button variant="unstyled" bg="google.white" size="lg" h="full">
+        <Button
+          variant="unstyled"
+          bg="google.white"
+          size="lg"
+          h="full"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
           <GoogleLogo h="1.5625rem" w="1.5625rem" />
         </Button>
       )}
