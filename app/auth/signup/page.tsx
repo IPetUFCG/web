@@ -3,6 +3,7 @@
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import {
   Button,
@@ -39,11 +40,11 @@ export default function SignUpPage() {
 
   const password = watch("password");
   const axios = useAxios();
+  const router = useRouter();
 
   const [passwordType, setPasswordType] = usePasswordToggle();
 
   const onSubmit = async (formData: SignUpForm) => {
-    console.log({ formData });
     try {
       const payload = {
         name: formData.name,
@@ -52,14 +53,7 @@ export default function SignUpPage() {
       };
 
       const response = await axios.post("/auth/signup", payload);
-      console.log({ response });
-      if (response.status === 200)
-        await signIn("credentials", {
-          email: payload.email,
-          password: payload.password,
-          redirect: true,
-          callbackUrl: "/home",
-        });
+      if (response.status === 201) router.push("/auth/signin?Auth=success");
     } catch (error) {
       console.log(error);
     }

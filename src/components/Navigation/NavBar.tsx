@@ -22,19 +22,23 @@ import ActiveLink from "./ActiveLink";
 import NavLink from "./NavLink";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Image from "next/image";
+import { useSession, signOut } from "next-auth/react";
 
-type NavBarItem = {
-  label: string;
-  link: string;
-};
+const links = [
+  {
+    label: "Publicações",
+    link: "/home",
+  },
+  {
+    label: "Pets",
+    link: "/pets",
+  },
+];
 
-type NavBarProps = {
-  items: NavBarItem[];
-};
-
-function NavBar({ items }: NavBarProps) {
+function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pathName = usePathname();
+  const { data } = useSession();
 
   return (
     <>
@@ -57,7 +61,7 @@ function NavBar({ items }: NavBarProps) {
                 spacing={4}
                 display={{ base: "none", md: "flex" }}
               >
-                {items.map((item) =>
+                {links.map((item) =>
                   item.link === pathName ? (
                     <ActiveLink key={item.link} title={item.label} />
                   ) : (
@@ -79,27 +83,26 @@ function NavBar({ items }: NavBarProps) {
                   cursor={"pointer"}
                   minW={0}
                 >
-                  <Avatar
-                    size={"md"}
-                    src={
-                      "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
-                    }
-                  />
+                  <Avatar size={"md"} src={data?.user?.image || ""} />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
-                  <MenuItem>Link 2</MenuItem>
-                  <MenuDivider />
-                  <MenuItem>Link 3</MenuItem>
+                  <MenuItem
+                    onClick={() =>
+                      signOut({ redirect: true, callbackUrl: "/auth/signin" })
+                    }
+                  >
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Flex>
           </Flex>
         </Container>
+
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {items.map((item) => (
+              {links.map((item) => (
                 <NavLink key={item.link} link={item.link} title={item.label} />
               ))}
             </Stack>

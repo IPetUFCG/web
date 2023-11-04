@@ -1,50 +1,57 @@
+import { useAxios } from "@/src/hooks/useAxios";
 import {
-  Button,
-  Flex,
   Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+  Flex,
+  Button,
 } from "@chakra-ui/react";
 import React from "react";
-import CreateReportForm from "./CreateReportForm";
-import CustomModalHeader from "../../Modal/CustomModalHeader";
 import { useForm } from "react-hook-form";
-import { useAxios } from "@/src/hooks/useAxios";
 import { ImageType } from "../../FileInput/FileInput";
+import CustomModalHeader from "../../Modal/CustomModalHeader";
+import CreateReportForm from "../CreateReport/CreateReportForm";
+import { CreateReportFormType } from "../CreateReport/CreateReportModal";
+import { IReport } from "../../../../types/report";
 
-export type CreateReportFormType = {
-  title: string;
-  content: string;
-  petId: number;
-};
-
-type CreateReportModalProps = {
+export type EditReportModalProps = {
   isOpen: boolean;
   handleClose: () => void;
-  handleCreate: (newReport: any) => void;
-};
+  handleSave: (newReport: IReport, id: number) => void;
+} & IReport;
 
-const CreateReportModal = ({
+const EditReportModal = ({
+  content,
+  id,
+  petId,
+  photos,
+  reportDatCreation,
+  title,
+  pet,
   handleClose,
+  handleSave,
   isOpen,
-  handleCreate,
-}: CreateReportModalProps) => {
+}: EditReportModalProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<CreateReportFormType>();
+  } = useForm<CreateReportFormType>({
+    defaultValues: {
+      content,
+      petId,
+      title,
+    },
+  });
   const axios = useAxios();
 
-  const [images, setImages] = React.useState<ImageType[]>([]);
+  const [images, setImages] = React.useState<ImageType[]>(photos);
 
   const handleCreateReport = async (data: CreateReportFormType) => {
-    const payload = {
+    const payload: IReport = {
       content: data.content,
       petId: Number(data.petId),
       title: data.title,
@@ -54,11 +61,13 @@ const CreateReportModal = ({
         fileUrl: image.fileUrl,
         title: image.title,
       })),
+      id,
+      reportDatCreation,
     };
 
     try {
-      await axios.post("/reports", payload);
-      handleCreate(payload);
+      await axios.put(`/reports/${id}`, payload);
+      handleSave(payload, id);
       resetForm();
     } catch (error) {
       console.log(error);
@@ -96,7 +105,7 @@ const CreateReportModal = ({
                 backgroundColor: "#0063D1",
               }}
             >
-              Criar
+              Salvar
             </Button>
           </Flex>
         </ModalFooter>
@@ -105,4 +114,4 @@ const CreateReportModal = ({
   );
 };
 
-export default CreateReportModal;
+export default EditReportModal;
