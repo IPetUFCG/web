@@ -51,7 +51,7 @@ export default function ChangePage() {
   };
 
   return (
-    <Main uPetsBackground>
+    <Main bg="green">
       <Flex h="full" justify="center" align="center">
         <Form
           title="Bora alterar essa senha!"
@@ -82,7 +82,7 @@ export default function ChangePage() {
               </FormControl>
 
               <FormControl isInvalid={!!errors.passwordConfirmation}>
-                <FormLabel size="lg">Confirmação da Senha</FormLabel>
+                <FormLabel size="lg">Confirmar Senha</FormLabel>
                 <Input
                   placeholder="euamocachorro"
                   size="lg"
