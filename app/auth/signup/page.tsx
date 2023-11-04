@@ -67,7 +67,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <Main uPetsBackground>
+    <Main bg="pink">
       <Flex h="full" justify="center" align="center">
         <Form
           title="Nós da UPets te damos as boas-vindas!"
@@ -139,7 +139,7 @@ export default function SignUpPage() {
                 </FormControl>
 
                 <FormControl isInvalid={!!errors.passwordConfirmation}>
-                  <FormLabel size="lg">Confirmação da Senha</FormLabel>
+                  <FormLabel size="lg">Confirmar Senha</FormLabel>
                   <Input
                     placeholder="euamocachorro"
                     size="lg"

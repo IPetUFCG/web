@@ -16,19 +16,17 @@ export default function Form({
 }) {
   return (
     <Box
-      border="0.25rem"
+      border="0.625rem solid"
       borderColor="black"
       w="full"
-      maxW="26.875rem"
+      maxW="34.375rem"
       borderRadius="0.625rem"
       bg="white"
       {...boxProps}
     >
       <Stack
         as="form"
-        px="1.875rem"
-        pt="3.75rem"
-        pb="2.5rem"
+        p="3.125rem"
         position="relative"
         align="center"
         gap="1.875rem"
@@ -37,12 +35,12 @@ export default function Form({
         <Dots />
 
         <Stack gap="0.9375rem" mb="0.625rem">
-          <Heading as="h1" size="3xl" textAlign="center">
+          <Heading as="h1" size="xl" textAlign="center">
             {title}
           </Heading>
 
           {subtitle && (
-            <Text as="h3" fontSize="3xl" textAlign="center">
+            <Text as="h3" fontSize="xl" textAlign="center">
               {subtitle}
             </Text>
           )}

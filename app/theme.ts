@@ -75,9 +75,9 @@ export const theme = extendTheme({
     Button: {
       sizes: {
         lg: {
-          h: "3.4375rem",
+          h: "4.6875rem",
           w: "100%",
-          fontSize: "3xl",
+          fontSize: "1.5rem",
           transition: "all 0.2s",
           _active: {
             filter: "brightness(110%)",
@@ -97,8 +97,8 @@ export const theme = extendTheme({
       sizes: {
         lg: {
           fontWeight: "bold",
-          fontSize: "xl",
-          mb: "0.125rem",
+          fontSize: "1rem",
+          mb: "0.3125rem",
         },
       },
     },
@@ -115,7 +115,7 @@ export const theme = extendTheme({
       sizes: {
         lg: {
           field: {
-            h: "2.8125rem",
+            h: "3.75rem",
             fontSize: "xl",
             _placeholder: {
               fontSize: "xl",
