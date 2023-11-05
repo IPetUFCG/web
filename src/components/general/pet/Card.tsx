@@ -1,4 +1,4 @@
-import { Stack, Text, Image, Flex } from "@chakra-ui/react";
+import { Stack, Text, Image } from "@chakra-ui/react";
 
 import { Pet } from "@/src/models/Pet";
 
@@ -18,7 +18,7 @@ export default function Card({ pet }: { pet: Pet }) {
         alt={`Imagem do Pet: ${name}`}
         h="25rem"
         w="18.75rem"
-        rounded="lg"
+        rounded="md"
         __css={{ objectFit: "cover" }}
       />
       <Text fontSize="1.875rem" fontWeight="bold">

@@ -3,7 +3,6 @@ import React, { createContext, useEffect, useState } from "react";
 import { Pet } from "../models/Pet";
 import * as api from "../api/pets";
 import { useSession } from "next-auth/react";
-import { useAxios } from "../hooks/useAxios";
 
 interface ContextProps {
   pets: Pet[];

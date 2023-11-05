@@ -120,7 +120,9 @@ const ReportCard = ({
           </Grid>
         </Box>
       )}
-      <DeleteAlertonCofirm={handleDeleteReport}
+
+      <DeleteAlert
+        onCofirm={handleDeleteReport}
         isOpen={deleteModalOpen}
         onClose={() => setDeleteModalOpen(false)}
         leastDestructiveRef={cancelRef}
@@ -129,6 +131,7 @@ const ReportCard = ({
         ser desfeita."
         title="Deletar Publicação"
       />
+
       <EditReportModal
         content={content}
         handleClose={() => setEditModalOpen(false)}
