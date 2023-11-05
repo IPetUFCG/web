@@ -128,7 +128,9 @@ export default function CreatePetModal({ isOpen, onClose }: Props) {
           <Button variant="ghost" onClick={handleCancel}>
             Cancelar
           </Button>
-          <Button type="submit">Cadastrar</Button>
+          <Button type="submit" bg="blue" color="white">
+            Cadastrar
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

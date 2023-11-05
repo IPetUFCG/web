@@ -8,7 +8,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
 } from "@chakra-ui/react";
+import Carousel from "../ImageSlider/Carousel";
 
 interface Props {
   isOpen: boolean;
@@ -24,7 +26,26 @@ export default function PetDetailsModal({ isOpen, onClose, pet }: Props) {
         <ModalHeader>Detalhes do Pet</ModalHeader>
         <ModalCloseButton />
 
-        <ModalBody></ModalBody>
+        <ModalBody display="flex" flexDir="column" gap="3rem">
+          <Carousel images={pet.photos} />
+          <Text fontSize="1.875rem" fontWeight="bold">
+            {pet.name}
+          </Text>
+          <Text
+            w="fit-content"
+            color="blue"
+            rounded="full"
+            border="2px"
+            borderColor="blue"
+            px="1rem"
+            py="0.5rem"
+            lineHeight="none"
+            fontWeight="bold"
+            fontSize="md"
+          >
+            {pet.age} anos
+          </Text>
+        </ModalBody>
 
         <ModalFooter>
           <Button onClick={onClose}>Fechar</Button>
