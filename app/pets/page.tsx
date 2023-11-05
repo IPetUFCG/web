@@ -1,35 +1,59 @@
 "use client";
 
-import React from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import PetsProvider from "@/src/context/PetsProvider";
+import React, { useState } from "react";
+import { AddIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Container,
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useBoolean,
+} from "@chakra-ui/react";
+
+import { usePets } from "@/src/hooks/usePets";
+import NavBar from "@/src/components/Navigation/NavBar";
+import Card from "@/src/components/general/pet/Card";
+import CustomIconButton from "@/src/components/general/CustomIconButton";
+import CreatePetModal from "@/src/components/general/pet/CreatePetModal";
 
 function PetsPage() {
-  const { data: session } = useSession();
+  const { pets } = usePets();
 
-  console.log({ session });
+  const [modalIsOpen, setModalStatus] = useBoolean();
 
   return (
-    <PetsProvider>
-      <div>
-        <h1>Protected Route</h1>
-        <div className="ml-auto flex gap-2">
-          {session?.user ? (
-            <div>
-              <p>{session.user.name}</p>
-              <button onClick={() => signOut()}>Sign Out</button>
-            </div>
-          ) : (
-            <button
-              className="bg-white text-black p-2 border-r-4"
-              onClick={() => signIn()}
-            >
-              Sign In
-            </button>
-          )}
-        </div>
-      </div>
-    </PetsProvider>
+    <>
+      <NavBar />
+      <Container>
+        <Flex as="ul" flexWrap="wrap" gap="2rem" py="3rem">
+          {pets.map((pet, index) => (
+            <li key={`pet-${index}`}>
+              <Card pet={pet} />
+            </li>
+          ))}
+        </Flex>
+
+        <Box position="fixed" bottom={16} right={32}>
+          <CustomIconButton
+            w="60px"
+            h="60px"
+            size="lg"
+            borderRadius="50%"
+            aria-label="create report"
+            onClick={setModalStatus.on}
+            icon={<AddIcon color="white" />}
+          />
+        </Box>
+
+        <CreatePetModal isOpen={modalIsOpen} onClose={setModalStatus.off} />
+      </Container>
+    </>
   );
 }
 

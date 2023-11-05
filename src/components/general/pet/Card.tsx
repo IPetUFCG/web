@@ -1,9 +1,9 @@
-import { Stack, Text, Image } from "@chakra-ui/react";
+import { Stack, Text, Image, Flex } from "@chakra-ui/react";
 
-import { Pet } from "@/src/types/pet";
+import { Pet } from "@/src/models/Pet";
 
 export default function Card({ pet }: { pet: Pet }) {
-  const { name, image } = pet;
+  const { name, age, photos } = pet;
   return (
     <Stack
       border="0.1875rem solid"
@@ -14,14 +14,29 @@ export default function Card({ pet }: { pet: Pet }) {
       p="1.25rem"
     >
       <Image
-        src={image}
+        src={photos[0]?.fileUrl ?? ""}
         alt={`Imagem do Pet: ${name}`}
         h="25rem"
         w="18.75rem"
+        rounded="lg"
         __css={{ objectFit: "cover" }}
       />
       <Text fontSize="1.875rem" fontWeight="bold">
         {name}
+      </Text>
+      <Text
+        w="fit-content"
+        color="blue"
+        rounded="full"
+        border="2px"
+        borderColor="blue"
+        px="1rem"
+        py="0.5rem"
+        lineHeight="none"
+        fontWeight="bold"
+        fontSize="md"
+      >
+        {age} anos
       </Text>
     </Stack>
   );

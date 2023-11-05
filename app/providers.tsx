@@ -5,6 +5,7 @@ import { CacheProvider } from "@chakra-ui/next-js";
 import { ReactNode } from "react";
 
 import { theme } from "./theme";
+import PetsProvider from "@/src/context/PetsProvider";
 
 type ProviderType = {
   children: ReactNode;
@@ -13,7 +14,9 @@ type ProviderType = {
 const Providers = ({ children }: ProviderType) => {
   return (
     <CacheProvider>
-      <ChakraProvider theme={theme}>{children}</ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <PetsProvider>{children}</PetsProvider>
+      </ChakraProvider>
     </CacheProvider>
   );
 };

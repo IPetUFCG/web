@@ -14,9 +14,15 @@
 // createdAt DateTime  @default(now()) @db.Timestamp(6)
 // updatedAt DateTime  @updatedAt
 
+interface Attachment {
+  title: string;
+  fileUrl: string;
+}
+
 export class Pet {
-  readonly name;
-  readonly age;
+  readonly name: string;
+  readonly age: number;
+  readonly photos: Attachment[];
 
   constructor(obj: any) {
     try {
@@ -24,9 +30,25 @@ export class Pet {
         throw new Error("invalid pet name");
       if (!obj?.age || typeof obj.age !== "number")
         throw new Error("invalid pet age");
+      if (!obj?.photos || !Array.isArray(obj.photos))
+        throw new Error("invalid pet photos");
+
+      const photos: Attachment[] = [];
+
+      obj.photos.forEach((photo) => {
+        if (
+          photo?.title &&
+          typeof photo.title === "string" &&
+          photo?.fileUrl &&
+          typeof photo.fileUrl === "string"
+        ) {
+          photos.push(photo);
+        }
+      });
 
       this.name = obj.name;
       this.age = obj.age;
+      this.photos = photos;
     } catch (e) {
       throw e;
     }
