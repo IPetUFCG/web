@@ -24,6 +24,7 @@ import NavLink from "./NavLink";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
+
 import { useRouter } from "next/navigation";
 
 const links = [

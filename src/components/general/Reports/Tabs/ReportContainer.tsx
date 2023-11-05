@@ -32,6 +32,7 @@ export default function ReportContainer() {
   const [tabIndex, setTabIndex] = React.useState(0);
   const [allReports, setAllReports] = React.useState<IReport[]>([]);
   const [myReports, setMyReports] = React.useState<IReport[]>([]);
+  const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
     const getReportsRequest = async () => {
@@ -82,7 +83,7 @@ export default function ReportContainer() {
             <Tab>Todos</Tab>
             <Tab w="10rem">Meus Reportes</Tab>
           </TabList>
-          <FilterBar />
+          <FilterBar value={search} onChange={setSearch} />
         </Flex>
         <CardsList
           items={tabIndex === TabIndexes.ALL ? allReports : myReports}

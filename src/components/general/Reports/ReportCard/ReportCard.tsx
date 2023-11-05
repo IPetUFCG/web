@@ -10,6 +10,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import React from "react";
+
 import Carousel from "../../ImageSlider/Carousel";
 import { useAxios } from "@/src/hooks/useAxios";
 import MobileReportCard from "./MobileReportCard";
@@ -119,6 +120,7 @@ const ReportCard = ({
           </Grid>
         </Box>
       )}
+
       <DeleteAlert
         onCofirm={handleDeleteReport}
         isOpen={deleteModalOpen}
@@ -129,6 +131,7 @@ const ReportCard = ({
         ser desfeita."
         title="Deletar Publicação"
       />
+
       <EditReportModal
         content={content}
         handleClose={() => setEditModalOpen(false)}

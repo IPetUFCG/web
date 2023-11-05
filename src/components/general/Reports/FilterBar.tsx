@@ -8,11 +8,21 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-const FilterBar = () => {
+interface Props {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const FilterBar = ({ value, onChange }: Props) => {
   return (
     <Flex w="100%" justifyContent="end">
       <InputGroup w="30%" size="md">
-        <Input variant="outline" placeholder="Buscar por titulo ou animal" />
+        <Input
+          variant="outline"
+          placeholder="Buscar por titulo ou animal"
+          value={value}
+          onChange={(e) => onChange(e.currentTarget.value)}
+        />
         <InputRightElement>
           <IconButton
             variant="ghost"

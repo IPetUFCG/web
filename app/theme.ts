@@ -35,6 +35,9 @@ export const theme = extendTheme({
       ".no-scrollbar::-webkit-scrollbar": {
         display: "none",
       },
+      ul: {
+        listStyle: "none",
+      },
     },
   },
 
