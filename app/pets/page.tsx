@@ -2,19 +2,7 @@
 
 import React, { useState } from "react";
 import { AddIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Container,
-  Flex,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useBoolean,
-} from "@chakra-ui/react";
+import { Box, Container, Flex, useBoolean } from "@chakra-ui/react";
 
 import { usePets } from "@/src/hooks/usePets";
 import NavBar from "@/src/components/Navigation/NavBar";
