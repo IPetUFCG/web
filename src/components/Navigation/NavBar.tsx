@@ -15,6 +15,7 @@ import {
   MenuList,
   Stack,
   Container,
+  Divider,
 } from "@chakra-ui/react";
 import React from "react";
 import { usePathname } from "next/navigation";
@@ -23,6 +24,8 @@ import NavLink from "./NavLink";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
+
+import { useRouter } from "next/navigation";
 
 const links = [
   {
@@ -33,11 +36,20 @@ const links = [
     label: "Pets",
     link: "/pets",
   },
+  {
+    label: "Lar Temporario",
+    link: "/temporaryHouses",
+  },
+  {
+    label: "Cuidadores",
+    link: "/caretakers",
+  },
 ];
 
 function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pathName = usePathname();
+  const router = useRouter();
   const { data } = useSession();
 
   return (
@@ -45,7 +57,7 @@ function NavBar() {
       <Flex backgroundColor="#636FFF" p={16} justifyContent="center">
         <Image src="logo-white.svg" alt="logo" width={250} height={60} />
       </Flex>
-      <Box bg="black" px={4}>
+      <Box bg="black">
         <Container>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
@@ -86,6 +98,10 @@ function NavBar() {
                   <Avatar size={"md"} src={data?.user?.image || ""} />
                 </MenuButton>
                 <MenuList>
+                  <MenuItem onClick={() => router.push("/user")}>
+                    Perfil
+                  </MenuItem>
+                  <Divider my={2} />
                   <MenuItem
                     onClick={() =>
                       signOut({ redirect: true, callbackUrl: "/auth/signin" })

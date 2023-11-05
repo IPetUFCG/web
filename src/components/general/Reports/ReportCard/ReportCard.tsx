@@ -10,13 +10,13 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import React from "react";
-import { ImageType } from "../../FileInput/FileInput";
+
 import Carousel from "../../ImageSlider/Carousel";
 import { useAxios } from "@/src/hooks/useAxios";
 import MobileReportCard from "./MobileReportCard";
-import DeleteReportModal from "../DeleteReport/DeleteReportModal";
 import EditReportModal from "../EditReport/EditReportModal";
 import { IReport } from "@/src/types/report";
+import DeleteAlert from "../../DeleteAlert/DeleteAlert";
 
 export type ReportCardProps = {
   owner: boolean;
@@ -120,12 +120,14 @@ const ReportCard = ({
           </Grid>
         </Box>
       )}
-      <DeleteReportModal
-        onCofirm={handleDeleteReport}
+      <DeleteAlertonCofirm={handleDeleteReport}
         isOpen={deleteModalOpen}
         onClose={() => setDeleteModalOpen(false)}
         leastDestructiveRef={cancelRef}
         isMobile={isMobile}
+        content="Tem certeza que deseja excluir esta publicação? Esta ação não poderá
+        ser desfeita."
+        title="Deletar Publicação"
       />
       <EditReportModal
         content={content}
