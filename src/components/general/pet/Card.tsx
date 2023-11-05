@@ -11,6 +11,7 @@ export default function Card({ pet }: { pet: Pet }) {
       boxShadow="-0.25rem 0.25rem 0 0 black"
       rounded="0.4375rem"
       gap="0.9375rem"
+      w="21.25rem"
       p="1.25rem"
     >
       <Image
@@ -36,7 +37,7 @@ export default function Card({ pet }: { pet: Pet }) {
         fontWeight="bold"
         fontSize="md"
       >
-        {age} anos
+        {age} {age === 1 ? "ano" : "anos"}
       </Text>
     </Stack>
   );

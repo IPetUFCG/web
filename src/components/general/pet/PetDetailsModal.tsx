@@ -43,7 +43,7 @@ export default function PetDetailsModal({ isOpen, onClose, pet }: Props) {
             fontWeight="bold"
             fontSize="md"
           >
-            {pet.age} anos
+            {pet.age} {pet.age === 1 ? "ano" : "anos"}
           </Text>
         </ModalBody>
 
