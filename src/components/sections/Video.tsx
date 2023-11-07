@@ -32,8 +32,8 @@ export default function Video() {
             <iframe
               width="720"
               height="405"
-              src="https://www.youtube.com/embed/X8ghLbjjOmE"
-              title="Novos animais engraçados🤣🤣 Vídeos mais engraçados de cães e gatos 😹🐶 Parte 11"
+              src="https://www.youtube.com/embed/-ecw2_8fSDg"
+              title="Pitch UPets (MVP)"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               style={{
