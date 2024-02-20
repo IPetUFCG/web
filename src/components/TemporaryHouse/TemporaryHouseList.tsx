@@ -1,5 +1,5 @@
 import { ITemporaryHouse } from "@/src/types/temporaryHouse";
-import { Container, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import TemporaryHouseItem from "./TemporaryHouseItem";
 
@@ -13,7 +13,7 @@ export default function TemporaryHouseList({
   temporaryHouses,
 }: TemporaryHouseListProps) {
   return (
-    <Container p={isMobile ? 2 : undefined}>
+    <Box>
       <Flex flexDir="column" gap={8}>
         {temporaryHouses.map((house) => (
           <TemporaryHouseItem
@@ -26,6 +26,6 @@ export default function TemporaryHouseList({
           />
         ))}
       </Flex>
-    </Container>
+    </Box>
   );
 }

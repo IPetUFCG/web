@@ -11,12 +11,13 @@ import React from "react";
 interface Props {
   value: string;
   onChange: (value: string) => void;
+  isMobile?: boolean;
 }
 
-const FilterBar = ({ value, onChange }: Props) => {
+const FilterBar = ({ value, onChange, isMobile }: Props) => {
   return (
     <Flex w="100%" justifyContent="end">
-      <InputGroup w="30%" size="md">
+      <InputGroup w={isMobile ? "100%" : "30%"} size="md">
         <Input
           variant="outline"
           placeholder="Buscar por titulo ou animal"

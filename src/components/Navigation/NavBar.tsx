@@ -62,10 +62,20 @@ function NavBar() {
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
               size={"md"}
-              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              icon={
+                isOpen ? (
+                  <CloseIcon color="white" />
+                ) : (
+                  <HamburgerIcon color="white" />
+                )
+              }
               aria-label={"Open Menu"}
               display={{ md: "none" }}
               onClick={isOpen ? onClose : onOpen}
+              backgroundColor="#FFA23B"
+              _hover={{
+                backgroundColor: "#FFA23B",
+              }}
             />
             <HStack spacing={8} alignItems={"center"}>
               <HStack

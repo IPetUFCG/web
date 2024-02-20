@@ -2,7 +2,13 @@
 
 import React, { useState } from "react";
 import { AddIcon } from "@chakra-ui/icons";
-import { Box, Container, Flex, useBoolean } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  useBoolean,
+  useMediaQuery,
+} from "@chakra-ui/react";
 
 import { usePets } from "@/src/hooks/usePets";
 import NavBar from "@/src/components/Navigation/NavBar";
@@ -14,6 +20,7 @@ import PetDetailsModal from "@/src/components/general/pet/PetDetailsModal";
 import FilterBar from "@/src/components/general/Reports/FilterBar";
 
 function PetsPage() {
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
   const { pets } = usePets();
 
   const [modalIsOpen, setModalStatus] = useBoolean();
@@ -30,7 +37,7 @@ function PetsPage() {
       <NavBar />
       <Container py="3rem" display="flex" flexDir="column" gap="3rem">
         <Flex justify="space-between" alignItems="center">
-          <FilterBar value={search} onChange={setSearch} />
+          <FilterBar value={search} onChange={setSearch} isMobile={isMobile} />
         </Flex>
 
         {filteredPets.length === 0 ? (
@@ -38,7 +45,12 @@ function PetsPage() {
             Não encontramos nenhum Pet
           </Flex>
         ) : (
-          <Flex as="ul" flexWrap="wrap" gap="2rem">
+          <Flex
+            as="ul"
+            flexWrap="wrap"
+            gap="2rem"
+            justifyContent={isMobile ? "center" : undefined}
+          >
             {filteredPets.map((pet, index) => (
               <Box
                 as="li"
@@ -62,7 +74,7 @@ function PetsPage() {
             size="lg"
             borderRadius="50%"
             aria-label="create report"
-            onClick={setModalStatus.on}
+            onClick={() => setModalStatus.on()}
             icon={<AddIcon color="white" />}
           />
         </Box>

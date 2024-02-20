@@ -22,7 +22,7 @@ const TabIndexes = {
   MY_REPORTS: 1,
 } as const;
 
-export default function ReportContainer() {
+export function PublicationContainer() {
   const axios = useAxios();
   const session = useSession();
 
@@ -35,7 +35,7 @@ export default function ReportContainer() {
   const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
-    const getReportsRequest = async () => {
+    const getPublicationsRequest = async () => {
       try {
         const response = await axios.get("/reports");
         const myReports = await axios.get(`/reports/${session.data?.user.id}`);
@@ -46,10 +46,10 @@ export default function ReportContainer() {
       }
     };
 
-    if (session.status === "authenticated") void getReportsRequest();
+    if (session.status === "authenticated") getPublicationsRequest();
   }, [session]);
 
-  const deleteReport = (id: number) => {
+  const deletePublication = (id: number) => {
     setAllReports((prev) => {
       return prev.filter((report) => report.id !== id);
     });
@@ -58,7 +58,7 @@ export default function ReportContainer() {
     });
   };
 
-  const editReport = (report: IReport, id: number) => {
+  const editPublication = (report: IReport, id: number) => {
     setAllReports((prev) => {
       const updatedResponse = prev.map((item) => {
         if (item.id === id) return report;
@@ -81,15 +81,15 @@ export default function ReportContainer() {
         <Flex justify="space-between" alignItems="center">
           <TabList>
             <Tab>Todos</Tab>
-            <Tab w="10rem">Meus Reportes</Tab>
+            <Tab w="14rem">Minhas Publicações</Tab>
           </TabList>
           <FilterBar value={search} onChange={setSearch} />
         </Flex>
         <CardsList
           items={tabIndex === TabIndexes.ALL ? allReports : myReports}
           owner={tabIndex === TabIndexes.MY_REPORTS}
-          deleteReport={deleteReport}
-          editReport={editReport}
+          deleteReport={deletePublication}
+          editReport={editPublication}
         />
       </Tabs>
       <Box position="fixed" bottom={16} right={32}>

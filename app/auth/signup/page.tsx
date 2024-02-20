@@ -113,7 +113,7 @@ export default function SignUpPage() {
                 )}
               </FormControl>
 
-              <HStack gap="0.625rem">
+              <HStack gap="0.625rem" display="flex" flexWrap="wrap">
                 <FormControl isInvalid={!!errors.password}>
                   <FormLabel size="lg">Senha</FormLabel>
                   <InputGroup>

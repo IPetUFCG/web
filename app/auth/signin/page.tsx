@@ -57,18 +57,23 @@ export default function SignInPage() {
   }
 
   const onSubmit = async (data) => {
-    const response = await axios.post("/auth/signin", {
-      email: data.email,
-      password: data.password,
-    });
-
-    if (response.status === 200)
-      await signIn("credentials", {
+    try {
+      const response = await axios.post("/auth/signin", {
         email: data.email,
         password: data.password,
-        redirect: true,
-        callbackUrl: "/home",
       });
+
+      if (response.status === 200)
+        await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: true,
+          callbackUrl: "/home",
+        });
+      else console.log("Authentication Failed");
+    } catch (error) {
+      console.log("API request failed", error);
+    }
   };
 
   const githubLogin = async () => {

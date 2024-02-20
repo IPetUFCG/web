@@ -16,13 +16,11 @@ export default function MyTemporaryHouse({
   deleteTemporaryHouse,
 }: MyTemporaryHouseProps) {
   return (
-    <Container>
-      <MyTemporaryHouseForm
-        temporaryHouse={temporaryHouse}
-        changeTemporaryHouse={changeTemporaryHouse}
-        addTemporaryHouse={addTemporaryHouse}
-        deleteTemporaryHouse={deleteTemporaryHouse}
-      />
-    </Container>
+    <MyTemporaryHouseForm
+      temporaryHouse={temporaryHouse}
+      changeTemporaryHouse={changeTemporaryHouse}
+      addTemporaryHouse={addTemporaryHouse}
+      deleteTemporaryHouse={deleteTemporaryHouse}
+    />
   );
 }

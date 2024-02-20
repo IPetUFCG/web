@@ -15,8 +15,8 @@ import {
 import { useForm } from "react-hook-form";
 import FileInput, { ImageType } from "../FileInput/FileInput";
 import { ChangeEvent, useState } from "react";
-import axios from "axios";
 import { usePets } from "@/src/hooks/usePets";
+import CustomModalHeader from "../Modal/CustomModalHeader";
 
 interface Props {
   isOpen: boolean;
@@ -91,7 +91,7 @@ export default function CreatePetModal({ isOpen, onClose }: Props) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-        <ModalHeader>Cadastrar Pet</ModalHeader>
+        <CustomModalHeader title="Cadastrar Pet" onClose={handleCancel} />
         <ModalCloseButton />
 
         <ModalBody>
@@ -128,7 +128,15 @@ export default function CreatePetModal({ isOpen, onClose }: Props) {
           <Button variant="ghost" onClick={handleCancel}>
             Cancelar
           </Button>
-          <Button type="submit" bg="blue" color="white">
+          <Button
+            type="submit"
+            bg="blue"
+            color="white"
+            backgroundColor="#636FFF"
+            _hover={{
+              backgroundColor: "#0063D1",
+            }}
+          >
             Cadastrar
           </Button>
         </ModalFooter>

@@ -74,7 +74,7 @@ const CreateReportModal = ({
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
       <ModalOverlay />
-      <ModalContent minW="520px">
+      <ModalContent>
         <CustomModalHeader
           title="Criar Nova Publicação"
           onClose={handleClose}
