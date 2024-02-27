@@ -12,21 +12,21 @@ import React from "react";
 import FileInput, { ImageType } from "../../FileInput/FileInput";
 import { useAxios } from "@/src/hooks/useAxios";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { CreateReportFormType } from "./CreateReportModal";
+import { CreatePublicationFormType } from "./CreatePublicationModal";
 
-export type CreateReportFormProps = {
-  register: UseFormRegister<CreateReportFormType>;
+export type CreatePublicationFormProps = {
+  register: UseFormRegister<CreatePublicationFormType>;
   images: ImageType[];
   setImages: React.Dispatch<React.SetStateAction<ImageType[]>>;
-  errors: FieldErrors<CreateReportFormType>;
+  errors: FieldErrors<CreatePublicationFormType>;
 };
 
-export default function CreateReportForm({
+export default function CreatePublicationForm({
   register,
   images,
   setImages,
   errors = {},
-}: CreateReportFormProps) {
+}: CreatePublicationFormProps) {
   const axios = useAxios();
 
   const [petsList, setPetsList] = React.useState([]);

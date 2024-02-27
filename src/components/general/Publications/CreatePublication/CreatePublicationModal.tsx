@@ -3,47 +3,45 @@ import {
   Flex,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
-  ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
 import React from "react";
-import CreateReportForm from "./CreateReportForm";
+import CreatePublicationForm from "./CreatePublicationForm";
 import CustomModalHeader from "../../Modal/CustomModalHeader";
 import { useForm } from "react-hook-form";
 import { useAxios } from "@/src/hooks/useAxios";
 import { ImageType } from "../../FileInput/FileInput";
 
-export type CreateReportFormType = {
+export type CreatePublicationFormType = {
   title: string;
   content: string;
   petId: number;
 };
 
-type CreateReportModalProps = {
+type CreatePublicationModalProps = {
   isOpen: boolean;
   handleClose: () => void;
-  handleCreate: (newReport: any) => void;
+  handleCreate: (newPublication: any) => void;
 };
 
-const CreateReportModal = ({
+const CreatePublicationModal = ({
   handleClose,
   isOpen,
   handleCreate,
-}: CreateReportModalProps) => {
+}: CreatePublicationModalProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<CreateReportFormType>();
+  } = useForm<CreatePublicationFormType>();
   const axios = useAxios();
 
   const [images, setImages] = React.useState<ImageType[]>([]);
 
-  const handleCreateReport = async (data: CreateReportFormType) => {
+  const handleCreatePublication = async (data: CreatePublicationFormType) => {
     const payload = {
       content: data.content,
       petId: Number(data.petId),
@@ -57,7 +55,7 @@ const CreateReportModal = ({
     };
 
     try {
-      const { data } = await axios.post("/reports", payload);
+      const { data } = await axios.post("/publications", payload);
       handleCreate(data);
       resetForm();
     } catch (error) {
@@ -80,7 +78,7 @@ const CreateReportModal = ({
           onClose={handleClose}
         />
         <ModalBody>
-          <CreateReportForm
+          <CreatePublicationForm
             register={register}
             images={images}
             setImages={(images) => setImages(images)}
@@ -93,7 +91,7 @@ const CreateReportModal = ({
               Cancelar
             </Button>
             <Button
-              onClick={handleSubmit(handleCreateReport)}
+              onClick={handleSubmit(handleCreatePublication)}
               backgroundColor="#636FFF"
               color="white"
               _hover={{
@@ -109,4 +107,4 @@ const CreateReportModal = ({
   );
 };
 
-export default CreateReportModal;
+export default CreatePublicationModal;

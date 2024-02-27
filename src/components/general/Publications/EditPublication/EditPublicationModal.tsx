@@ -12,34 +12,33 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ImageType } from "../../FileInput/FileInput";
 import CustomModalHeader from "../../Modal/CustomModalHeader";
-import CreateReportForm from "../CreateReport/CreateReportForm";
-import { CreateReportFormType } from "../CreateReport/CreateReportModal";
-import { IReport } from "../../../../types/report";
+import CreatePublicationForm from "../CreatePublication/CreatePublicationForm";
+import { CreatePublicationFormType } from "../CreatePublication/CreatePublicationModal";
+import { IPublication } from "../../../../types/publication";
 
-export type EditReportModalProps = {
+export type EditPublicationModalProps = {
   isOpen: boolean;
   handleClose: () => void;
-  handleSave: (newReport: IReport, id: number) => void;
-} & IReport;
+  handleSave: (newPublication: IPublication, id: number) => void;
+} & IPublication;
 
-const EditReportModal = ({
+const EditPublicationModal = ({
   content,
   id,
   petId,
   photos,
-  reportDatCreation,
+  createdAt,
   title,
-  pet,
   handleClose,
   handleSave,
   isOpen,
-}: EditReportModalProps) => {
+}: EditPublicationModalProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<CreateReportFormType>({
+  } = useForm<CreatePublicationFormType>({
     defaultValues: {
       content,
       petId,
@@ -50,8 +49,8 @@ const EditReportModal = ({
 
   const [images, setImages] = React.useState<ImageType[]>(photos);
 
-  const handleCreateReport = async (data: CreateReportFormType) => {
-    const payload: IReport = {
+  const handleCreatePublication = async (data: CreatePublicationFormType) => {
+    const payload: IPublication = {
       content: data.content,
       petId: Number(data.petId),
       title: data.title,
@@ -62,7 +61,7 @@ const EditReportModal = ({
         title: image.title,
       })),
       id,
-      reportDatCreation,
+      createdAt,
     };
 
     try {
@@ -84,9 +83,12 @@ const EditReportModal = ({
     <Modal isOpen={isOpen} onClose={handleClose}>
       <ModalOverlay />
       <ModalContent minW="520px">
-        <CustomModalHeader title="Criar Novo Reporte" onClose={handleClose} />
+        <CustomModalHeader
+          title="Criar Novo Publicatione"
+          onClose={handleClose}
+        />
         <ModalBody>
-          <CreateReportForm
+          <CreatePublicationForm
             register={register}
             images={images}
             setImages={setImages}
@@ -99,7 +101,7 @@ const EditReportModal = ({
               Cancelar
             </Button>
             <Button
-              onClick={handleSubmit(handleCreateReport)}
+              onClick={handleSubmit(handleCreatePublication)}
               backgroundColor="#636FFF"
               color="white"
               _hover={{
@@ -115,4 +117,4 @@ const EditReportModal = ({
   );
 };
 
-export default EditReportModal;
+export default EditPublicationModal;
