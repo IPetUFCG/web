@@ -16,6 +16,7 @@ export function ReportContainer() {
     []
   );
   const [search, setSearch] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     const getPublicationsRequest = async () => {
@@ -31,11 +32,45 @@ export function ReportContainer() {
     if (session.status === "authenticated") getPublicationsRequest();
   }, [session]);
 
-  const deleteReport = (id: number) => {};
+  const deletePublication = async (id: number) => {
+    try {
+      setLoading(true);
+      await axios.delete(`/publications/${id}`);
+      setAllReports((prev) => {
+        const updatedReports = prev.filter(
+          (instance) => instance.publication.id !== id
+        );
+        return updatedReports;
+      });
+    } catch (error) {
+      console.log(error);
+      window.alert("Erro no sistema, tente novamente mais tarde!");
+    }
+  };
+
+  const deleteReport = async (id: number) => {
+    try {
+      setLoading(true);
+      await axios.delete(`/reports/${id}`);
+      setAllReports((prev) => {
+        const updatedReports = prev.filter(
+          (instance) => instance.publication.id !== id
+        );
+        return updatedReports;
+      });
+    } catch (error) {
+      console.log(error);
+      window.alert("Erro no sistema, tente novamente mais tarde!");
+    }
+  };
 
   return (
     <Container my={8} p={isMobile ? 2 : undefined}>
-      <CardsList items={allReports} deleteReport={deleteReport} />
+      <CardsList
+        items={allReports}
+        deleteReport={deleteReport}
+        deletePublication={deletePublication}
+      />
     </Container>
   );
 }

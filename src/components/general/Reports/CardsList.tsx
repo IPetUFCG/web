@@ -6,9 +6,14 @@ import { IReport } from "@/src/types/report";
 type CardListProps = {
   items: any[];
   deleteReport: (id: number) => void;
+  deletePublication: (id: number) => void;
 };
 
-const CardsList = ({ items, deleteReport }: CardListProps) => {
+const CardsList = ({
+  items,
+  deleteReport,
+  deletePublication,
+}: CardListProps) => {
   return (
     <Flex gap={8} mt={8} flexDirection="column">
       {items.map((item) => (
@@ -16,6 +21,8 @@ const CardsList = ({ items, deleteReport }: CardListProps) => {
           key={item.publication.id}
           publication={item?.publication}
           reports={item?.reports}
+          handleDeleteReport={deleteReport}
+          handleDeletePublication={deletePublication}
         />
       ))}
     </Flex>

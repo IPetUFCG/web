@@ -13,6 +13,7 @@ export interface IReport {
 }
 
 export interface ReportPublication {
+  id: number;
   title: string;
   content: string;
   createdAt: string;

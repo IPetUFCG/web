@@ -3,7 +3,6 @@ import {
   Box,
   Flex,
   Text,
-  useMediaQuery,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -19,20 +18,27 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-import { useAxios } from "@/src/hooks/useAxios";
 import { IReport, ReportPublication } from "@/src/types/report";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import DeletePublicationModal from "../Modals/DeletePublicationModal";
+import DeleteReportsModal from "../Modals/DeleteReportsModal";
 
 export type ReportCardProps = {
   publication: ReportPublication;
   reports: IReport[];
+  handleDeleteReport: (publicationId: number) => void;
+  handleDeletePublication: (publicationId: number) => void;
 };
 
-const ReportCard = ({ publication, reports }: ReportCardProps) => {
-  const [isMobile] = useMediaQuery("(max-width: 768px)");
-  const axios = useAxios();
-
+const ReportCard = ({
+  publication,
+  reports,
+  handleDeleteReport,
+  handleDeletePublication,
+}: ReportCardProps) => {
   const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
+  const [deleteReportModalOpen, setDeleteReportModalOpen] =
+    React.useState(false);
 
   return (
     <Flex flexDir="column">
@@ -53,8 +59,12 @@ const ReportCard = ({ publication, reports }: ReportCardProps) => {
                 Ações
               </MenuButton>
               <MenuList>
-                <MenuItem>Aceitar Denuncias</MenuItem>
-                <MenuItem>Remover Denuncias</MenuItem>
+                <MenuItem onClick={() => setDeleteModalOpen(true)}>
+                  Aceitar Denuncias
+                </MenuItem>
+                <MenuItem onClick={() => setDeleteReportModalOpen(true)}>
+                  Remover Denuncias
+                </MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -101,25 +111,20 @@ const ReportCard = ({ publication, reports }: ReportCardProps) => {
             </Box>
           ))}
         </Flex>
-        <Box px={12}>
-          <Box>
-            {/* <Text as="sub" fontSize="1.25rem" color="#838383">
-              {content}
-            </Text> */}
-          </Box>
-        </Box>
       </Box>
 
-      {/* <DeleteAlert
-        onCofirm={handleDeleteReport}
+      <DeletePublicationModal
+        handleConfirm={() => handleDeletePublication(publication.id)}
         isOpen={deleteModalOpen}
-        onClose={() => setDeleteModalOpen(false)}
-        leastDestructiveRef={cancelRef}
-        isMobile={isMobile}
-        content="Tem certeza que deseja excluir esta publicação? Esta ação não poderá
-        ser desfeita."
-        title="Deletar Publicação"
-      /> */}
+        handleClose={() => setDeleteModalOpen(false)}
+        title={publication.title}
+      />
+      <DeleteReportsModal
+        handleConfirm={() => handleDeleteReport(publication.id)}
+        isOpen={deleteReportModalOpen}
+        handleClose={() => setDeleteReportModalOpen(false)}
+        title={publication.title}
+      />
     </Flex>
   );
 };
