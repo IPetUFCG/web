@@ -1,4 +1,4 @@
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import { DeleteIcon, EditIcon, WarningTwoIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -21,6 +21,7 @@ import Carousel from "../../ImageSlider/Carousel";
 import { useAxios } from "@/src/hooks/useAxios";
 import MobileReportCard from "./MobileReportCard";
 import EditReportModal from "../EditReport/EditReportModal";
+import DenounceReportModal from "../DenounceReport/DenounceReportModal";
 import { IReport } from "@/src/types/report";
 import DeleteAlert from "../../DeleteAlert/DeleteAlert";
 
@@ -53,6 +54,7 @@ const ReportCard = ({
 
   const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
   const [editModalOpen, setEditModalOpen] = React.useState(false);
+  const [denounceModalOpen, setDenounceModalOpen] = React.useState(false);
 
   const handleDeleteReport = async () => {
     try {
@@ -66,28 +68,41 @@ const ReportCard = ({
 
   return (
     <Flex flexDir="column">
-      {owner && (
-        <Flex gap={1} w="fit-content" borderRadius={8} boxShadow="inner">
-          <IconButton
-            size="md"
-            colorScheme="facebook"
-            variant="ghost"
-            aria-label="edit"
-            onClick={() => setEditModalOpen(true)}
-          >
-            <EditIcon />
-          </IconButton>
+      <Flex gap={1} w="fit-content" borderRadius={8} boxShadow="inner">
+        {owner && (
+          <>
+            <IconButton
+              size="md"
+              colorScheme="facebook"
+              variant="ghost"
+              aria-label="edit"
+              onClick={() => setEditModalOpen(true)}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              size="md"
+              colorScheme="red"
+              variant="ghost"
+              aria-label="delete"
+              onClick={() => setDeleteModalOpen(true)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </>
+        )}
+        {!owner && (
           <IconButton
             size="md"
             colorScheme="red"
             variant="ghost"
             aria-label="delete"
-            onClick={() => setDeleteModalOpen(true)}
+            onClick={() => setDenounceModalOpen(true)}
           >
-            <DeleteIcon />
+            <WarningTwoIcon />
           </IconButton>
-        </Flex>
-      )}
+        )}
+      </Flex>
       {isMobile ? (
         <MobileReportCard
           content={content}
@@ -171,6 +186,11 @@ const ReportCard = ({
         photos={photos}
         reportDatCreation={reportDatCreation}
         title={title}
+      />
+
+      <DenounceReportModal
+        isOpen={denounceModalOpen}
+        handleClose={() => setDenounceModalOpen(false)}
       />
     </Flex>
   );
