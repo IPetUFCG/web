@@ -1,7 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 import ReportCard from "./ReportCard/ReportCard";
-import { IReport } from "@/src/types/report";
 
 type CardListProps = {
   items: any[];
