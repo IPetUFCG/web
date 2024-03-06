@@ -1,7 +1,45 @@
-import { Container, Box, Stack, HStack, Heading, Text } from "@chakra-ui/react";
+"use client";
+import { useEffect, useState } from "react";
+import {
+  Container,
+  Box,
+  Stack,
+  HStack,
+  Heading,
+  Text,
+  Spinner,
+} from "@chakra-ui/react";
+
 import Doodle from "../general/Doodle";
+import { useAxios } from "@/src/hooks/useAxios";
+import { usePets } from "@/src/hooks/usePets";
 
 export default function Introduction() {
+  const axios = useAxios();
+  const { pets } = usePets();
+
+  const [userCount, setUserCount] = useState(0);
+  const [adoptionCount, setAdoptionCount] = useState(0);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function get() {
+      setLoading(true);
+
+      const { data: user } = await axios.get("/user");
+      if (user && Array.isArray(user)) setUserCount(user.length);
+
+      const { data: adoption } = await axios.get("/adoption");
+      if (adoption && Array.isArray(adoption))
+        setAdoptionCount(adoption.length);
+
+      setLoading(false);
+    }
+
+    get();
+  }, []);
+
   return (
     <Box as="section" bg="black" py="4.6875rem" pos="relative">
       <Container>
@@ -24,9 +62,17 @@ export default function Introduction() {
             w="full"
             maxW="77.5rem"
           >
-            <Card number={0} text="Animais Cadastrados" />
-            <Card number={0} text="Usuários Ativos" />
-            <Card number={0} text="Animais salvos" />
+            <Card
+              number={pets.length}
+              text="Animais Cadastrados"
+              loading={loading}
+            />
+            <Card number={userCount} text="Usuários Ativos" loading={loading} />
+            <Card
+              number={adoptionCount}
+              text="Animais adotados"
+              loading={loading}
+            />
           </HStack>
         </Stack>
       </Container>
@@ -45,7 +91,15 @@ export default function Introduction() {
   );
 }
 
-function Card({ number, text }: { number: number; text: string }) {
+function Card({
+  number,
+  text,
+  loading,
+}: {
+  number: number;
+  text: string;
+  loading: boolean;
+}) {
   return (
     <Stack
       bg="darkgray"
@@ -60,9 +114,13 @@ function Card({ number, text }: { number: number; text: string }) {
       scrollSnapAlign="center"
       flexShrink="0"
     >
-      <Heading as="h3" fontSize="3.75rem" color="white">
-        {number}
-      </Heading>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Heading as="h3" fontSize="3.75rem" color="white">
+          {number}
+        </Heading>
+      )}
       <Text fontSize="1.875rem" color="white">
         {text}
       </Text>
