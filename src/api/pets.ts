@@ -1,12 +1,8 @@
 import api from "./instance";
 
-export const getPets = async (token: string) => {
+export const getPets = async () => {
   const response = await api
-    .get(`/pets`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get(`/pets`)
     .then((res) => res.data)
     .catch((err) => {
       throw err;
