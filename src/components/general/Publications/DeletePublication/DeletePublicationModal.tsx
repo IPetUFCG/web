@@ -10,18 +10,18 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-export type DeleteReportModalProps = {
+export type DeletePublicationModalProps = {
   onCofirm: () => void;
   isMobile?: boolean;
 } & Omit<AlertDialogProps, "children">;
 
-const DeleteReportModal = ({
+const DeletePublicationModal = ({
   onCofirm,
   isOpen,
   leastDestructiveRef,
   onClose,
   isMobile,
-}: DeleteReportModalProps) => {
+}: DeletePublicationModalProps) => {
   return (
     <AlertDialog
       isOpen={isOpen}
@@ -53,4 +53,4 @@ const DeleteReportModal = ({
   );
 };
 
-export default DeleteReportModal;
+export default DeletePublicationModal;

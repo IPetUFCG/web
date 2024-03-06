@@ -1,12 +1,30 @@
-import { ImageType } from "../components/general/FileInput/FileInput";
-import { IPet } from "./pet";
-
 export interface IReport {
-  content: string;
-  title: string;
-  petId: number;
-  photos: ImageType[];
-  pet?: IPet;
-  reportDatCreation: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
   id: number;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    phone?: string;
+    photo?: string;
+  };
+}
+
+export interface ReportPublication {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  reportCount: number;
+  pet: {
+    name: string;
+    age: number;
+  };
+}
+
+export interface GetAllReportResponse {
+  publication: ReportPublication;
+  reports: IReport[];
 }

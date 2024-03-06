@@ -1,16 +1,15 @@
 import { Avatar, Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import Carousel from "../../ImageSlider/Carousel";
-import { ImageType } from "../../FileInput/FileInput";
-import { IReport } from "@/src/types/report";
+import { IPublication } from "@/src/types/publication";
 
-export type MobileReportCardProps = {} & IReport;
+export type MobilePublicationCardProps = {} & IPublication;
 
-const MobileReportCard = ({
+const MobilePublicationCard = ({
   content,
   photos,
   title,
-}: MobileReportCardProps) => {
+}: MobilePublicationCardProps) => {
   return (
     <Box p={4} boxShadow="base">
       <Flex w="100%" justify="space-between" align="center">
@@ -33,4 +32,4 @@ const MobileReportCard = ({
   );
 };
 
-export default MobileReportCard;
+export default MobilePublicationCard;

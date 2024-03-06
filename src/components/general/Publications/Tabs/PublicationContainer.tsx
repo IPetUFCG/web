@@ -10,16 +10,16 @@ import {
 } from "@chakra-ui/react";
 import CustomIconButton from "../../CustomIconButton";
 import CardsList from "../CardsList";
-import CreateReportModal from "../CreateReport/CreateReportModal";
+import CreatePublicationModal from "../CreatePublication/CreatePublicationModal";
 import FilterBar from "../FilterBar";
 import React from "react";
 import { useAxios } from "../../../../hooks/useAxios";
 import { useSession } from "next-auth/react";
-import { IReport } from "@/src/types/report";
+import { IPublication } from "@/src/types/publication";
 
 const TabIndexes = {
   ALL: 0,
-  MY_REPORTS: 1,
+  MY_PublicationS: 1,
 } as const;
 
 export function PublicationContainer() {
@@ -30,17 +30,23 @@ export function PublicationContainer() {
 
   const [openCreateModal, setOpenCreateModal] = React.useState(false);
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [allReports, setAllReports] = React.useState<IReport[]>([]);
-  const [myReports, setMyReports] = React.useState<IReport[]>([]);
+  const [allPublications, setAllPublications] = React.useState<IPublication[]>(
+    []
+  );
+  const [myPublications, setMyPublications] = React.useState<IPublication[]>(
+    []
+  );
   const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
     const getPublicationsRequest = async () => {
       try {
-        const response = await axios.get("/reports");
-        const myReports = await axios.get(`/reports/${session.data?.user.id}`);
-        setAllReports(response.data);
-        setMyReports(myReports.data);
+        const response = await axios.get("/publications");
+        const myPublications = await axios.get(
+          `/publications/${session.data?.user.id}`
+        );
+        setAllPublications(response.data);
+        setMyPublications(myPublications.data);
       } catch (error) {
         console.log(error);
       }
@@ -50,25 +56,25 @@ export function PublicationContainer() {
   }, [session]);
 
   const deletePublication = (id: number) => {
-    setAllReports((prev) => {
-      return prev.filter((report) => report.id !== id);
+    setAllPublications((prev) => {
+      return prev.filter((Publication) => Publication.id !== id);
     });
-    setMyReports((prev) => {
-      return prev.filter((report) => report.id !== id);
+    setMyPublications((prev) => {
+      return prev.filter((Publication) => Publication.id !== id);
     });
   };
 
-  const editPublication = (report: IReport, id: number) => {
-    setAllReports((prev) => {
+  const editPublication = (Publication: IPublication, id: number) => {
+    setAllPublications((prev) => {
       const updatedResponse = prev.map((item) => {
-        if (item.id === id) return report;
+        if (item.id === id) return Publication;
         return item;
       });
       return updatedResponse;
     });
-    setMyReports((prev) => {
+    setMyPublications((prev) => {
       const updatedResponse = prev.map((item) => {
-        if (item.id === id) return report;
+        if (item.id === id) return Publication;
         return item;
       });
       return updatedResponse;
@@ -86,10 +92,10 @@ export function PublicationContainer() {
           <FilterBar value={search} onChange={setSearch} />
         </Flex>
         <CardsList
-          items={tabIndex === TabIndexes.ALL ? allReports : myReports}
-          owner={tabIndex === TabIndexes.MY_REPORTS}
-          deleteReport={deletePublication}
-          editReport={editPublication}
+          items={tabIndex === TabIndexes.ALL ? allPublications : myPublications}
+          owner={tabIndex === TabIndexes.MY_PublicationS}
+          deletePublication={deletePublication}
+          editPublication={editPublication}
         />
       </Tabs>
       <Box position="fixed" bottom={16} right={32}>
@@ -98,17 +104,17 @@ export function PublicationContainer() {
           h="60px"
           size="lg"
           borderRadius="50%"
-          aria-label="create report"
+          aria-label="create Publication"
           onClick={() => setOpenCreateModal(true)}
           icon={<AddIcon color="white" />}
         />
       </Box>
-      <CreateReportModal
+      <CreatePublicationModal
         isOpen={openCreateModal}
         handleClose={() => setOpenCreateModal(false)}
-        handleCreate={(newReport: any) => {
-          setAllReports((prev) => [...prev, newReport]);
-          setMyReports((prev) => [...prev, newReport]);
+        handleCreate={(newPublication: any) => {
+          setAllPublications((prev) => [...prev, newPublication]);
+          setMyPublications((prev) => [...prev, newPublication]);
         }}
       />
     </Container>

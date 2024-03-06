@@ -52,6 +52,12 @@ function NavBar() {
   const router = useRouter();
   const { data } = useSession();
 
+  if (
+    data?.user.role === "ADMIN" &&
+    !links.some((el) => el.link === "/reports")
+  )
+    links.push({ label: "Denuncias", link: "/reports" });
+
   return (
     <>
       <Flex backgroundColor="#636FFF" p={16} justifyContent="center">
